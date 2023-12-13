@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800;900&display=swap');
+*{
+  box-sizing: border-box !important;
+  margin: 0 !important;
+  font-family: 'Raleway', sans-serif;
+}
+body{
+  background-color: #ffebff;
+}
+button{
+  border: none;
+  outline: none !important;
+}
+h1,h2,h3,h4,h5,h6{
+  font-weight: 700;
+}
+nav {
+  background: linear-gradient(96deg, #7d0381 28.67%, #37004a 116.25%);
+}
+
+nav ul li img{
+  width: 23px;
+}
+nav ul li{
+  padding:15px 25px;
+  color: #FFF7FF;
+  font-size: 1.4rem;
+}
+.pr-color{
+  color: #7d0381;
+}
+.pr-bg{
+  background-color: #7d0381;
+}
+nav ul li:hover, .nav-act{
+  background-color: #FFF7FF;
+  color: #7d0381;
+  cursor: pointer;
+  transition: all 0.4s;
+}
+
+
+
+
+
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+
+nav ul li {
+  padding: 12px 18px;
+  color: #FFF7FF;
+  font-size: 1.2rem;
+} 

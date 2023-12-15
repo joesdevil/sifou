@@ -9,7 +9,7 @@ export default function MostF() {
         <div className="d-flex justify-content-center align-items-center">
           <img src={PPE} className="" width="140px" alt="" />
           <div className="ms-3" style={{ width: "" }}>
-            <div className="rounded-pill bg-warning px-4 py-2 text-center text-white fw-bold">
+            <div className="rounded-pill small bg-warning px-4 py-2 text-center text-white fw-bold">
               32 Alerts
             </div>
             <div className="rounded-pill mt-3 pr-bg px-4 py-2 small text-center text-white fw-bold">

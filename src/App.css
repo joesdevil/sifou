@@ -21,20 +21,20 @@ nav {
 nav ul li img{
   width: 23px;
 }
-nav ul li{
+nav ul .link{
   padding:15px 25px;
   color: #FFF7FF;
   font-size: 1.4rem;
 }
 .pr-color{
-  color: #7d0381;
+  color: #7d0381 !important;
 }
 .pr-bg{
-  background-color: #7d0381;
+  background-color: #7d0381 !important;
 }
-nav ul li:hover, .nav-act{
-  background-color: #FFF7FF;
-  color: #7d0381;
+nav .link:hover, .link.active{
+  background-color: #FFF7FF !important;
+  color: #7d0381 !important;
   cursor: pointer;
   transition: all 0.4s;
 }

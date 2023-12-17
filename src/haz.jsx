@@ -4,7 +4,7 @@ import MostF from "./components/haz/mostF";
 
 function Haz() {
   return (
-    <div className="row row-cols-md-2 p-4">
+    <div className="row haz m-0 row-cols-md-2 p-4">
       <div className="">
         <h3 className="pr-color mb-2">Latest Alert</h3>
         <LastHaz></LastHaz>

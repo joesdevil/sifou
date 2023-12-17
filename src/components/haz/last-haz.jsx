@@ -6,7 +6,7 @@ function LastHaz() {
         <span>
           Camera 02 / Area 3 / <small>23/11/2023 at 6:00 PM</small>
         </span>
-          <div className="rounded-4 bg-white p-2 shadow">
+          <div className="rounded-4 bg-white p-3 py-4 shadow">
             <div className="d-flex align-items-center mt-3">
               <div className="ms-3">
                 <img

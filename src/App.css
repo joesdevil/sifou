@@ -1,9 +1,29 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800;900&display=swap');
 *{
   box-sizing: border-box !important;
-  margin: 0 !important;
+  padding: 0;
   font-family: 'Raleway', sans-serif;
 }
+.haz *{
+  margin: 0 ;
+
+}
+.pr-color{
+  color: #7d0381 !important;
+}
+.pr-bg{
+  background-color: #7d0381 !important;
+}
+.btn-outline-pr{
+  color: #7d0381 !important;
+  border: solid 1px #7d0381;
+}
+.btn-outline-pr:hover{
+  background-color: #7d0381 !important;
+  color: #f1f1f1 !important;
+  border: solid 1px #7d0381;
+}
+
 body{
   background-color: #ffebff;
 }
@@ -26,17 +46,99 @@ nav ul .link{
   color: #FFF7FF;
   font-size: 1.4rem;
 }
-.pr-color{
-  color: #7d0381 !important;
-}
-.pr-bg{
-  background-color: #7d0381 !important;
-}
+nav ul li {
+  padding: 12px 18px;
+  color: #FFF7FF;
+  font-size: 1.2rem;
+} 
+
 nav .link:hover, .link.active{
   background-color: #FFF7FF !important;
   color: #7d0381 !important;
   cursor: pointer;
   transition: all 0.4s;
+}
+
+.zones  svg{
+  background-color: #FFEAFF;
+  border-radius: 6px;
+  border: solid 2px #7d0381 ;
+  color: #7d0381 !important;
+  padding: 8px;
+  width: 45px;
+  height: 45px;
+  cursor: pointer;
+}
+.zones .zone-edit svg{
+  padding: 12px;
+  width: 55px;
+  height: 55px;
+  cursor: pointer;
+}
+.zones  svg.disabled{
+  background-color: #FFEAFF;
+  border: solid 2px #7d038176 ;
+  color: #7d038128 !important;
+}
+.zones .feats{
+  display: flex;
+  margin-top: 9px ;
+}
+.zones  .feats .feat{
+margin:0 15px !important;
+margin-left: 0 !important;
+}
+.zones  .form-check-input:checked{
+  background-color: #7d0381;
+}
+.zones  .form-check-input{
+  cursor: pointer;
+transform: scale(1.5);
+}
+.zones  button{
+  width: 110px;
+  font-size: 0.85rem;
+}
+
+.zones .zone-image {
+  height: 500px;
+}
+.zones .zone-image img{
+  width: 100%;
+  height: 100%;
+}
+
+
+
+@media only screen and (max-width: 768px) {
+  .zones{
+    width: fit-content;
+  }
+  .zones  svg{
+    width: 35px;
+    height: 35px;
+  }
+  .zones  .feats .feat{
+  margin:0 3px !important;
+  }
+  .zones  .form-check-input{
+  transform: scale(1);
+  }
+  .zones  button{
+    width: max-content;
+    padding:2px 5px !important;
+    font-size: 1rem;
+  }
+  .zones  button span{
+display: none;
+  }
+    .zones .si,.ni{
+    font-size: small !important;
+  }
+  .zones th{
+    font-size: x-small;
+  }
+
 }
 
 
@@ -63,8 +165,3 @@ nav .link:hover, .link.active{
   background: #555; 
 }
 
-nav ul li {
-  padding: 12px 18px;
-  color: #FFF7FF;
-  font-size: 1.2rem;
-} 

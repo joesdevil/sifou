@@ -4,6 +4,7 @@ import './App.css';
 import Nav from './components/nav';
 import Haz from './haz';
 import Zones from './zones';
+import Edit from './components/zones/edit';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Routes>
         <Route path="/" exact element={<Haz />} />
         <Route path="/zones" exact element={<Zones />} />
+        <Route path="/zones/edit" exact element={<Edit />} />
         </Routes>
       </div>
     </Router>

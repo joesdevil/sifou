@@ -1,150 +1,153 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800;900&display=swap');
-*{
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800;900&display=swap");
+* {
   box-sizing: border-box !important;
   padding: 0;
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
 }
-.haz *{
-  margin: 0 ;
-
+.haz * {
+  margin: 0;
 }
-.pr-color{
+.pr-color {
   color: #7d0381 !important;
 }
-.pr-bg{
+.pr-bg {
   background-color: #7d0381 !important;
 }
-.btn-outline-pr{
+.btn-outline-pr {
   color: #7d0381 !important;
   border: solid 1px #7d0381;
 }
-.btn-outline-pr:hover{
+.btn-outline-pr:hover {
   background-color: #7d0381 !important;
   color: #f1f1f1 !important;
   border: solid 1px #7d0381;
 }
 
-body{
+body {
   background-color: #ffebff;
 }
-button{
+button {
   border: none;
   outline: none !important;
 }
-h1,h2,h3,h4,h5,h6{
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-weight: 700;
 }
 nav {
   background: linear-gradient(96deg, #7d0381 28.67%, #37004a 116.25%);
 }
 
-nav ul li img{
+nav ul li img {
   width: 23px;
 }
-nav ul .link{
-  padding:15px 25px;
-  color: #FFF7FF;
+nav ul .link {
+  padding: 15px 25px;
+  color: #fff7ff;
   font-size: 1.4rem;
 }
 nav ul li {
   padding: 12px 18px;
-  color: #FFF7FF;
+  color: #fff7ff;
   font-size: 1.2rem;
-} 
+}
 
-nav .link:hover, .link.active{
-  background-color: #FFF7FF !important;
+nav .link:hover,
+.link.active {
+  background-color: #fff7ff !important;
   color: #7d0381 !important;
   cursor: pointer;
   transition: all 0.4s;
 }
 
-.zones  svg{
-  background-color: #FFEAFF;
+.zones svg {
+  background-color: #ffeaff;
   border-radius: 6px;
-  border: solid 2px #7d0381 ;
+  border: solid 2px #7d0381;
   color: #7d0381 !important;
   padding: 8px;
   width: 45px;
   height: 45px;
   cursor: pointer;
 }
-.zones .zone-edit svg{
+.zones .zone-edit svg {
   padding: 12px;
   width: 55px;
   height: 55px;
   cursor: pointer;
 }
-.zones  svg.disabled{
-  background-color: #FFEAFF;
-  border: solid 2px #7d038176 ;
+.zones svg.disabled {
+  background-color: #ffeaff;
+  border: solid 2px #7d038176;
   color: #7d038128 !important;
 }
-.zones .feats{
+.zones .feats {
   display: flex;
-  margin-top: 9px ;
+  margin-top: 9px;
 }
-.zones  .feats .feat{
-margin:0 15px !important;
-margin-left: 0 !important;
+.zones .feats .feat {
+  cursor: pointer;
+  margin: 0 20px !important;
+  margin-left: 0 !important;
 }
-.zones  .form-check-input:checked{
+.zones .form-check-input:checked {
   background-color: #7d0381;
 }
-.zones  .form-check-input{
+.zones .form-check-input {
   cursor: pointer;
-transform: scale(1.5);
+  transform: scale(1.5);
 }
-.zones  button{
+.zone-edit .form-check-input {
+  cursor: pointer;
+  transform: scale(1.2) ;
+}
+.zones button {
   width: 110px;
   font-size: 0.85rem;
 }
 
 .zones .zone-image {
-  height: 500px;
+  height: 490px;
 }
-.zones .zone-image img{
+.zones .zone-image img {
   width: 100%;
   height: 100%;
 }
 
-
-
 @media only screen and (max-width: 768px) {
-  .zones{
+  .zones {
     width: fit-content;
   }
-  .zones  svg{
+  .zones svg {
     width: 35px;
     height: 35px;
   }
-  .zones  .feats .feat{
-  margin:0 3px !important;
+  .zones .feats .feat {
+    margin: 0 3px !important;
   }
-  .zones  .form-check-input{
-  transform: scale(1);
+  .zones .form-check-input {
+    transform: scale(1);
   }
-  .zones  button{
+  .zones button {
     width: max-content;
-    padding:2px 5px !important;
+    padding: 2px 5px !important;
     font-size: 1rem;
   }
-  .zones  button span{
-display: none;
+  .zones button span {
+    display: none;
   }
-    .zones .si,.ni{
+  .zones .si,
+  .ni {
     font-size: small !important;
   }
-  .zones th{
+  .zones th {
     font-size: x-small;
   }
-
 }
-
-
-
-
-
 
 ::-webkit-scrollbar {
   width: 10px;
@@ -152,16 +155,15 @@ display: none;
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #f1f1f1; 
+  background: #f1f1f1;
 }
- 
+
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #888; 
+  background: #888;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #555; 
+  background: #555;
 }
-

@@ -82,7 +82,7 @@ nav .link:hover,
 }
 .zones svg.disabled {
   background-color: #ffeaff;
-  border: solid 2px #7d038176;
+  border: solid 2px #7d038145;
   color: #7d038128 !important;
 }
 .zones .feats {
@@ -117,8 +117,49 @@ nav .link:hover,
   width: 100%;
   height: 100%;
 }
+.all-cam img {
+ object-fit: cover;
+ width: 100%;
+ height: 100%;
+}
+.all-cam .zone-image {
+  height: 350px;
+}
+.all-cam .zone-image .cam-info{
+  background-color: #7d0381c5;
+}
 
-@media only screen and (max-width: 768px) {
+
+.all-cam .zone-image .icon{
+padding-top: 9.1px;
+cursor: pointer;
+width: 45px;
+height:45px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media only screen and (max-width: 668px) {
   .zones {
     width: fit-content;
   }
@@ -140,8 +181,7 @@ nav .link:hover,
   .zones button span {
     display: none;
   }
-  .zones .si,
-  .ni {
+  .zones .si, .zones .ni {
     font-size: small !important;
   }
   .zones th {

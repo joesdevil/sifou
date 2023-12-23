@@ -16,7 +16,7 @@ export default function Nav() {
         <NavLink className="link" to="/zones" activeClassName="active">
           <i className="bi bi-map"></i>
         </NavLink>
-        <NavLink className="link" to="/videos" activeClassName="active">
+        <NavLink className="link" to="/cameras" activeClassName="active">
           <i className="bi bi-camera-video-fill"></i>
         </NavLink>
         <NavLink className="link" to="/analytics" activeClassName="active">

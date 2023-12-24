@@ -17,18 +17,6 @@ function Haz() {
           className="p-0 m-0"
           style={{ overflow: "auto", height: "calc(100vh - 180px)" }}>
           <Alert></Alert>
-          <Alert></Alert>
-          <Alert></Alert>
-          <Alert></Alert>
-          <Alert></Alert>
-          <Alert></Alert>
-          <Alert></Alert>
-          <Alert></Alert>
-          <Alert></Alert>
-          <Alert></Alert>
-          <Alert></Alert>
-          <Alert></Alert>
-          <Alert></Alert>
         </div>
 
       </div>

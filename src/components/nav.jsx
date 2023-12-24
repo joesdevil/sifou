@@ -22,6 +22,9 @@ export default function Nav() {
         <NavLink className="link" to="/analytics" activeClassName="active">
           <i className="bi bi-graph-up"></i>
         </NavLink>
+        <NavLink className="link" to="/config" activeClassName="active">
+        <i class="bi bi-gear-fill"></i>
+                </NavLink>
       </ul>
       <div className="logo me-3">
         <img src={logo} height="26px" alt="" />

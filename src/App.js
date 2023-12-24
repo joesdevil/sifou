@@ -8,6 +8,7 @@ import Edit from './components/zones/edit';
 import Add from './components/zones/add';
 import Cameras from './cameras';
 import Stats from './stats';
+import Config from './config';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/zones/add" exact element={<Add />} />
         <Route path="/cameras" exact element={<Cameras />} />
         <Route path="/analytics" exact element={<Stats />} />
+        <Route path="/config" exact element={<Config />} />
         </Routes>
       </div>
     </Router>

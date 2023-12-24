@@ -23,6 +23,11 @@
   border: solid 1px #7d0381;
 }
 
+
+
+
+
+
 body {
   background-color: #ffebff;
 }
@@ -94,7 +99,12 @@ nav .link:hover,
   margin: 0 20px !important;
   margin-left: 0 !important;
 }
-.zones .form-check-input:checked {
+.form-check-input {
+  cursor: pointer;
+  transform: scale(1.2) ;
+
+}
+.form-check-input:checked {
   background-color: #7d0381;
 }
 .zones .form-check-input {

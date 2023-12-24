@@ -156,7 +156,40 @@ height:45px;
 
 
 
+/* added by sifo */
 
+
+.selectbox{
+  height: 42px;
+padding: 10px;
+border-radius: 50px;
+border: none;
+background: #FFD5FF;
+color: #7D0381;
+font-size: 17px;
+margin-left: 18px;
+}
+
+.statflex{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.statflex div:first-of-type{
+  width: 60%;
+  display: flex;
+}
+
+
+.statflex div:nth-of-type(2){
+  width: 40%;
+}
+
+
+
+
+/* end by sifo */
 
 
 

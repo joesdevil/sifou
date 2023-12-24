@@ -1,16 +1,31 @@
 import inj from "../../images/injured.png";
-export default function Alert() {
+import React, { useState,useEffect  } from 'react';
+
+export default function Alert(props) {
+
+
+  useEffect(() => {
+    // Access the custom prop
+    // console.log('message:', props.message);
+
+    // ... rest of your component code
+  }, [props.customProp]);
   return (
     <div className="bg-white mb-2 px-4 py-2 rounded-3">
       <div className="d-flex align-items-center justify-content-between">
         <div className="d-flex align-items-center">
-          <img src={inj} width="40px" alt="" srcset="" />
+
+          {props.status == "danger"? <img src={inj} width="40px" alt="" srcset="" /> : <img src={inj} width="40px" alt="" srcset="" /> }
+          
+          
+
           <div className="ms-3">
             <h6 className="">
-              <span className="text-danger">Urgent:</span> a worker was injured
+              {/* <span className="text-danger">Urgent:</span> a worker was injured */}
+              <span>{props.message}</span>
             </h6>
             <p className="small">
-              <small>23/11/2023 at 5;00 PM</small>
+              <small>{props.date}</small>
             </p>
           </div>
         </div>

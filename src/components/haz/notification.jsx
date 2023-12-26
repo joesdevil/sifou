@@ -13,7 +13,12 @@ const WebSocketComponent = (props) => {
   const opened = new SpeechSynthesisUtterance("opened connection for notification");
   const con_err = new SpeechSynthesisUtterance("Connection error!");
   const closed = new SpeechSynthesisUtterance("closed connection for notification");
-  const speakvoice=true
+  let speakvoice,popalert,sendAlertAsEmail=Boolean
+  localStorage.getItem('isVoiceOver') === 'true'? speakvoice=true : speakvoice=false;
+  localStorage.getItem('isPoped') === 'true'? popalert=true : popalert=false;
+  localStorage.getItem('isAlertEmail') === 'true'? sendAlertAsEmail=true : sendAlertAsEmail=false;
+  
+  
   const [messageCount, setMessageCount] = useState(0);
   
   useEffect(() => {
@@ -25,11 +30,14 @@ const WebSocketComponent = (props) => {
     socket.addEventListener('open', (event) => {
       console.log('WebSocket connection opened:', event);
       socket.send('Hello, server!');
-      Swal.fire({
-        title: 'opened connection!',
-        text: "thanks",
-        icon: 'success',
-      });
+      if(popalert){
+        Swal.fire({
+          title: 'opened connection!',
+          text: "thanks",
+          icon: 'success',
+        }) 
+      }
+      
       
       if(speakvoice){
         synthesis.speak(opened);
@@ -42,21 +50,52 @@ const WebSocketComponent = (props) => {
       const context_obj=JSON.parse(event.data)
       console.log('Received message from server:', context_obj);
       const danger = new SpeechSynthesisUtterance(context_obj.message);
+      const messagebody=context_obj.message;
      
 
       if(speakvoice){
         synthesis.speak(danger);
       }
+      
       if( context_obj.status == "danger"){
         setMessageCount((prevCount) => prevCount + 1);
         localStorage.setItem("setMessageDngCount",messageCount)
          console.log("danger",messageCount)
       }
-      Swal.fire({
-        title: 'Qareeb!',
-        text: event.data,
-        icon: 'info',
-      });
+
+      if(sendAlertAsEmail){
+        const alertsAsEmail1 = {
+          email:"salemsif2001@gmail.com",
+          subject: "Alert Qareeb security",
+          body: messagebody,
+        };
+
+         
+          try {
+            const  response =   fetch("http://127.0.0.1:8000/send-email/", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(alertsAsEmail1),
+            });
+      
+            // const data =   response.json();
+            // console.log(data);
+          } catch (error) {
+            console.error("Error sending email:", error);
+          }
+    
+      }
+
+      if(popalert){
+        Swal.fire({
+          title: 'Qareeb!',
+          text: event.data,
+          icon: 'info',
+        })
+      }
+      
 
       // Append the received message to the state
       setReceivedMessages((prevMessages) => [
@@ -68,11 +107,16 @@ const WebSocketComponent = (props) => {
     // Connection closed
     socket.addEventListener('close', (event) => {
       console.log('WebSocket connection closed:', event);
-      Swal.fire({
-        title: 'closed connection!',
-        text: "thanks",
-        icon: 'error',
-      });
+
+      if(popalert){
+      
+        Swal.fire({
+          title: 'closed connection!',
+          text: "thanks",
+          icon: 'error',
+        })
+      }
+      
       if(speakvoice){
         synthesis.speak(closed);
       }
@@ -81,11 +125,15 @@ const WebSocketComponent = (props) => {
 
     // Connection error
     socket.addEventListener('error', (event) => {
-      Swal.fire({
-        title: 'connection error!',
-        text: "thanks",
-        icon: 'error',
-      });
+
+      if(popalert){
+        Swal.fire({
+          title: 'connection error!',
+          text: "thanks",
+          icon: 'error',
+        })
+      }
+    
       console.error('Connection error:', event);
       
       if(speakvoice){

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import {  useState, useEffect  } from "react";
 
 export default function Config() {
    const [rangDurationValue, setRageDurationValue] = useState(0);
@@ -17,6 +17,72 @@ export default function Config() {
       }
    };
 
+   const [isVoiceOver, setisVoiceOver] = useState(
+      localStorage.getItem('isVoiceOver') === 'true'
+    );
+
+    const [isPoped, setisPoped] = useState(
+      localStorage.getItem('isPoped') === 'true'
+    );
+    const [isAlertEmail, setisAlertEmail] = useState(
+      localStorage.getItem('isAlertEmail') === 'true'
+    );
+  
+    // Update localStorage when the state changes
+    useEffect(() => {
+      localStorage.setItem('isVoiceOver', isVoiceOver);
+    }, [isVoiceOver]);
+
+    useEffect(() => {
+      localStorage.setItem('isPoped', isPoped);
+    }, [isPoped]);
+
+    useEffect(() => {
+      localStorage.setItem('isAlertEmail', isAlertEmail);
+    }, [isAlertEmail]);
+
+    const toggleMode = () => {
+      setisVoiceOver((prevMode) => !prevMode);
+    };
+    const toggleModePop = () => {
+      setisPoped((prevMode) => !prevMode);
+    };
+    const toggleModeAlertEmail = () => {
+      console.log(isAlertEmail)
+      setisAlertEmail((prevMode) => !prevMode);
+    };
+
+
+    const handleReset = () => {
+      setisVoiceOver(false);
+      setisPoped(false);
+      setisAlertEmail(false)
+       
+    };
+
+    const [alertsAsEmail, setalertsAsEmail] = useState({
+      email:"salemsif2001@gmail.com",
+      subject: "hi",
+      body: "hi",
+    });
+  
+    const HandlealertsAsEmail = async () => {
+      try {
+        const response = await fetch("http://127.0.0.1:8000/send-email/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(alertsAsEmail),
+        });
+  
+        const data = await response.json();
+        console.log(data);
+      } catch (error) {
+        console.error("Error sending email:", error);
+      }
+    };
+
    return (
       <div className="p-4">
          <h4 className="pr-color">All Settings</h4>
@@ -26,7 +92,7 @@ export default function Config() {
                   <div className="gnrl">
                      <div className="d-flex justify-content-between">
                         <h5 className="pr-color">General settings :</h5>
-                        <button className="btn btn-sm fw-bold btn-outline-pr">
+                        <button className="btn btn-sm fw-bold btn-outline-pr"   >
                            <small>Change password</small>
                            <i class="bi bi-arrow-right-short"></i>
                         </button>
@@ -54,7 +120,7 @@ export default function Config() {
                   <div className="Alerts-&-Popups">
                      <div className="d-flex pt-4 justify-content-between">
                         <h5 className="pr-color">Alerts & Popups :</h5>
-                        <button className="btn btn-sm fw-bold btn-outline-pr">
+                        <button className="btn btn-sm fw-bold btn-outline-pr"  onClick={handleReset}>
                            <small>Reset History</small>
                            <i class="bi bi-arrow-right-short"></i>
                         </button>
@@ -65,14 +131,14 @@ export default function Config() {
                         </div>
                         <div className="col-4 border pt-3">
                            <div class="form-check float-end form-switch">
-                              <input class="form-check-input" type="checkbox" />
+                              <input class="form-check-input" type="checkbox"  checked={isAlertEmail} onChange={toggleModeAlertEmail} />
                            </div>
                            <div class="form-check float-start form-switch">
-                              <p className="pr-color small">Enabled</p>
+                              <p className="pr-color small">{!isAlertEmail?'Disabled':'Enabled'}</p>
                            </div>
                         </div>
                         <div className="col-8 border pr-color pt-3">
-                           <b className="align-middl">Switch voice on/off</b>
+                           <b className="align-middl">Send rapports daily</b>
                         </div>
                         <div className="col-4 border pt-3">
                            <div class="form-check float-end form-switch">
@@ -87,10 +153,11 @@ export default function Config() {
                         </div>
                         <div className="col-4 border pt-3">
                            <div class="form-check float-end form-switch">
-                              <input class="form-check-input" type="checkbox" />
+                              <input class="form-check-input"   type="checkbox" checked={isVoiceOver}
+          onChange={toggleMode} />
                            </div>
                            <div class="form-check float-start form-switch">
-                              <p className="pr-color small">Disabled</p>
+                              <p className="pr-color small"> {!isVoiceOver?'Disabled':'Enabled'} </p>
                            </div>
                         </div>
                         <div className="col-8 border pr-color pt-3">
@@ -100,10 +167,11 @@ export default function Config() {
                         </div>
                         <div className="col-4 border pt-3">
                            <div class="form-check float-end form-switch">
-                              <input class="form-check-input" type="checkbox" />
+                              <input class="form-check-input" type="checkbox" checked={isPoped}
+          onChange={toggleModePop} />
                            </div>
                            <div class="form-check float-start form-switch">
-                              <p className="pr-color small">Disabled</p>
+                              <p className="pr-color small">{!isPoped?'Disabled':'Enabled'}</p>
                            </div>
                         </div>
                      </div>

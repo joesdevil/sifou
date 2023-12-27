@@ -13,22 +13,10 @@ const WebSocketComponent = (props) => {
   const [receivedMessages, setReceivedMessages] = useState([]);
 
   const synthesis = window.speechSynthesis;
-<<<<<<< HEAD
   const opened = new SpeechSynthesisUtterance(t("openedCnxNotif"));
   const con_err = new SpeechSynthesisUtterance(t("conxErr"));
   const closed = new SpeechSynthesisUtterance(t("closedCnx"));
   const speakvoice=true
-=======
-  const opened = new SpeechSynthesisUtterance("opened connection for notification");
-  const con_err = new SpeechSynthesisUtterance("Connection error!");
-  const closed = new SpeechSynthesisUtterance("closed connection for notification");
-  let speakvoice,popalert,sendAlertAsEmail=Boolean
-  localStorage.getItem('isVoiceOver') === 'true'? speakvoice=true : speakvoice=false;
-  localStorage.getItem('isPoped') === 'true'? popalert=true : popalert=false;
-  localStorage.getItem('isAlertEmail') === 'true'? sendAlertAsEmail=true : sendAlertAsEmail=false;
-  
-  
->>>>>>> 23db3db2ce83a2cd264558046db82da42147d9c4
   const [messageCount, setMessageCount] = useState(0);
   
   useEffect(() => {
@@ -40,22 +28,11 @@ const WebSocketComponent = (props) => {
     socket.addEventListener('open', (event) => {
       console.log('WebSocket connection opened:', event);
       socket.send('Hello, server!');
-<<<<<<< HEAD
       Swal.fire({
         title: 'opened connection!',
         text: t(" Thanks"),
         icon: 'success',
       });
-=======
-      if(popalert){
-        Swal.fire({
-          title: 'opened connection!',
-          text: "thanks",
-          icon: 'success',
-        }) 
-      }
-      
->>>>>>> 23db3db2ce83a2cd264558046db82da42147d9c4
       
       if(speakvoice){
         synthesis.speak(opened);
@@ -125,24 +102,11 @@ const WebSocketComponent = (props) => {
     // Connection closed
     socket.addEventListener('close', (event) => {
       console.log('WebSocket connection closed:', event);
-<<<<<<< HEAD
       Swal.fire({
         title: t("cnxFermé"),
         text: t("Thanks"),
         icon: t('error'),
       });
-=======
-
-      if(popalert){
-      
-        Swal.fire({
-          title: 'closed connection!',
-          text: "thanks",
-          icon: 'error',
-        })
-      }
-      
->>>>>>> 23db3db2ce83a2cd264558046db82da42147d9c4
       if(speakvoice){
         synthesis.speak(closed);
       }
@@ -151,23 +115,11 @@ const WebSocketComponent = (props) => {
 
     // Connection error
     socket.addEventListener('error', (event) => {
-<<<<<<< HEAD
       Swal.fire({
         title: t('conxErr'),
         text: t(" Thanks"),
         icon: t('error'),
       });
-=======
-
-      if(popalert){
-        Swal.fire({
-          title: 'connection error!',
-          text: "thanks",
-          icon: 'error',
-        })
-      }
-    
->>>>>>> 23db3db2ce83a2cd264558046db82da42147d9c4
       console.error('Connection error:', event);
       
       if(speakvoice){

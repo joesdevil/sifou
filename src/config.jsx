@@ -24,74 +24,73 @@ export default function Config() {
 
    const handleChangeLangue = (event) => {
       const nouvelleLangue = event.target.value;
-      i18n.changeLanguage(nouvelleLangue); 
+      i18n.changeLanguage(nouvelleLangue);
    };
-
    const [isVoiceOver, setisVoiceOver] = useState(
       localStorage.getItem('isVoiceOver') === 'true'
-    );
+   );
 
-    const [isPoped, setisPoped] = useState(
+   const [isPoped, setisPoped] = useState(
       localStorage.getItem('isPoped') === 'true'
-    );
-    const [isAlertEmail, setisAlertEmail] = useState(
+   );
+   const [isAlertEmail, setisAlertEmail] = useState(
       localStorage.getItem('isAlertEmail') === 'true'
-    );
-  
-    // Update localStorage when the state changes
-    useEffect(() => {
+   );
+
+   // Update localStorage when the state changes
+   useEffect(() => {
       localStorage.setItem('isVoiceOver', isVoiceOver);
-    }, [isVoiceOver]);
+   }, [isVoiceOver]);
 
-    useEffect(() => {
+   useEffect(() => {
       localStorage.setItem('isPoped', isPoped);
-    }, [isPoped]);
+   }, [isPoped]);
 
-    useEffect(() => {
+   useEffect(() => {
       localStorage.setItem('isAlertEmail', isAlertEmail);
-    }, [isAlertEmail]);
+   }, [isAlertEmail]);
 
-    const toggleMode = () => {
+   const toggleMode = () => {
       setisVoiceOver((prevMode) => !prevMode);
-    };
-    const toggleModePop = () => {
+   };
+   const toggleModePop = () => {
       setisPoped((prevMode) => !prevMode);
-    };
-    const toggleModeAlertEmail = () => {
+   };
+   const toggleModeAlertEmail = () => {
       console.log(isAlertEmail)
       setisAlertEmail((prevMode) => !prevMode);
-    };
+   };
 
 
-    const handleReset = () => {
+   const handleReset = () => {
       setisVoiceOver(false);
       setisPoped(false);
       setisAlertEmail(false)
-       
-    };
 
-    const [alertsAsEmail, setalertsAsEmail] = useState({
-      email:"salemsif2001@gmail.com",
+   };
+
+   const [alertsAsEmail, setalertsAsEmail] = useState({
+      email: "salemsif2001@gmail.com",
       subject: "hi",
       body: "hi",
-    });
-  
-    const HandlealertsAsEmail = async () => {
+   });
+
+   const HandlealertsAsEmail = async () => {
       try {
-        const response = await fetch("http://127.0.0.1:8000/send-email/", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(alertsAsEmail),
-        });
-  
-        const data = await response.json();
-        console.log(data);
+         const response = await fetch("http://127.0.0.1:8000/send-email/", {
+            method: "POST",
+            headers: {
+               "Content-Type": "application/json",
+            },
+            body: JSON.stringify(alertsAsEmail),
+         });
+
+         const data = await response.json();
+         console.log(data);
       } catch (error) {
-        console.error("Error sending email:", error);
+         console.error("Error sending email:", error);
       }
-    };
+   };
 
    return (
       <div className="p-4">
@@ -101,22 +100,22 @@ export default function Config() {
                <div className=" bg-white p-4 rounded-3">
                   <div className="gnrl">
                      <div className="d-flex justify-content-between">
-                        <h5 className="pr-color">General settings :</h5>
-                        <button className="btn btn-sm fw-bold btn-outline-pr"   >
-                           <small>Change password</small>
+                        <h5 className="pr-color">{t('General settings :')}</h5>
+                        <button className="btn btn-sm fw-bold btn-outline-pr">
+                           <small>{t('Change password')}</small>
                            <i class="bi bi-arrow-right-short"></i>
                         </button>
-                        
-                     </div>
+
+                     </div >
                      <div className="row my-4">
                         <div className="col-8 border pr-color p-3">
                            <b className="align-middle">{t('Language')}</b>
                         </div>
                         <div className="col-4 border p-3">
-                           <select 
-                           class="form-select form-select-sm"
-                           value={i18n.language}
-                           onChange={handleChangeLangue}
+                           <select
+                              class="form-select form-select-sm"
+                              value={i18n.language}
+                              onChange={handleChangeLangue}
                            >
                               <option value="en">{t('English')}</option>
                               <option value="fr">{t('French')}</option>
@@ -131,12 +130,12 @@ export default function Config() {
                            </div>
                         </div>
                      </div>
-                  </div>
+                  </div >
                   <div className="Alerts-&-Popups">
                      <div className="d-flex pt-4 justify-content-between">
-                        <h5 className="pr-color">Alerts & Popups :</h5>
-                        <button className="btn btn-sm fw-bold btn-outline-pr"  onClick={handleReset}>
-                           <small>Reset History</small>
+                        <h5 className="pr-color">{t('Alerts & Popups :')}</h5>
+                        <button className="btn btn-sm fw-bold btn-outline-pr" onClick={handleReset}>
+                           <small>{t('Reset History')}</small>
                            <i class="bi bi-arrow-right-short"></i>
                         </button>
                      </div>
@@ -146,14 +145,14 @@ export default function Config() {
                         </div>
                         <div className="col-4 border pt-3">
                            <div class="form-check float-end form-switch">
-                              <input class="form-check-input" type="checkbox"  checked={isAlertEmail} onChange={toggleModeAlertEmail} />
+                              <input class="form-check-input" type="checkbox" checked={isAlertEmail} onChange={toggleModeAlertEmail} />
                            </div>
                            <div class="form-check float-start form-switch">
-                              <p className="pr-color small">{!isAlertEmail?'Disabled':'Enabled'}</p>
+                              <p className="pr-color small">{!isAlertEmail ? t('Disabled') : t('Enabled')}</p>
                            </div>
-                        </div>
+                        </div >
                         <div className="col-8 border pr-color pt-3">
-                           <b className="align-middl">Send rapports daily</b>
+                           <b className="align-middl">{t('Send rapports daily')}</b>
                         </div>
                         <div className="col-4 border pt-3">
                            <div class="form-check float-end form-switch">
@@ -168,13 +167,13 @@ export default function Config() {
                         </div>
                         <div className="col-4 border pt-3">
                            <div class="form-check float-end form-switch">
-                              <input class="form-check-input"   type="checkbox" checked={isVoiceOver}
-          onChange={toggleMode} />
+                              <input class="form-check-input" type="checkbox" checked={isVoiceOver}
+                                 onChange={toggleMode} />
                            </div>
                            <div class="form-check float-start form-switch">
-                              <p className="pr-color small"> {!isVoiceOver?'Disabled':'Enabled'} </p>
-                           </div>
-                        </div>
+                              <p className="pr-color small"> {!isVoiceOver ? t('Disabled') : t('Enabled')} </p>
+                           </div >
+                        </div >
                         <div className="col-8 border pr-color pt-3">
                            <b className="align-middl">
                               {t('Display alerts as popups')}
@@ -183,14 +182,15 @@ export default function Config() {
                         <div className="col-4 border pt-3">
                            <div class="form-check float-end form-switch">
                               <input class="form-check-input" type="checkbox" checked={isPoped}
-          onChange={toggleModePop} />
+                                 onChange={toggleModePop} />
                            </div>
                            <div class="form-check float-start form-switch">
-                              <p className="pr-color small">{!isPoped?'Disabled':'Enabled'}</p>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
+                              {/* <p className="pr-color small">{t('Disabled')}</p> */}
+                              <p className="pr-color small">{!isPoped ? t('Disabled') : t('Enabled')}</p>
+                           </div >
+                        </div >
+                     </div >
+                  </div >
                   <div className="reports">
                      <div className="d-flex justify-content-between">
                         <h5 className="pr-color">{t('Reports :')}</h5>
@@ -222,8 +222,8 @@ export default function Config() {
                         </div>
                      </div>
                   </div>
-               </div>
-            </div>
+               </div >
+            </div >
             <div>
                <div className="bg-white p-4 rounded-3">
                   <div className="Cam-Recording">
@@ -312,7 +312,7 @@ export default function Config() {
                   </div>
                </div>
             </div>
-         </div>
-      </div>
+         </div >
+      </div >
    );
 }

@@ -117,7 +117,8 @@ i18n
                     closedCnx : "Connexion fermée pour notification",
                     cnxFermé : 'connecxion Fermée!',
                     Thanks : 'Merci',
-                    error : 'Erreur'
+                    error : 'Erreur',
+                    'Send rapports daily' : 'Envoyer Des Rapports Quotidiens'
                 },
             },
         },

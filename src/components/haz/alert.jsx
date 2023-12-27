@@ -1,5 +1,6 @@
 import inj from "../../images/injured.png";
 import React, { useState,useEffect  } from 'react';
+import { useTranslation } from 'react-i18next';
 
 export default function Alert(props) {
 
@@ -10,6 +11,9 @@ export default function Alert(props) {
 
     // ... rest of your component code
   }, [props.customProp]);
+
+  const { t } = useTranslation();
+
   return (
     <div className="bg-white mb-2 px-4 py-2 rounded-3">
       <div className="d-flex align-items-center justify-content-between">
@@ -32,7 +36,7 @@ export default function Alert(props) {
         <div className="d-flex align-items-center">
           <button className="btn btn-sm btn-outline-danger fw-bold px-3">
             <small>
-              <small>See details</small>
+              <small>{t('See details')}</small>
             </small>
           </button>
           <div

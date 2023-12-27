@@ -3,16 +3,19 @@ import Alert from './alert';
 import React, { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
+import { useTranslation } from 'react-i18next';
+
 
 
 
 const WebSocketComponent = (props) => {
+  const { t } = useTranslation();
   const [receivedMessages, setReceivedMessages] = useState([]);
 
   const synthesis = window.speechSynthesis;
-  const opened = new SpeechSynthesisUtterance("opened connection for notification");
-  const con_err = new SpeechSynthesisUtterance("Connection error!");
-  const closed = new SpeechSynthesisUtterance("closed connection for notification");
+  const opened = new SpeechSynthesisUtterance(t("openedCnxNotif"));
+  const con_err = new SpeechSynthesisUtterance(t("conxErr"));
+  const closed = new SpeechSynthesisUtterance(t("closedCnx"));
   const speakvoice=true
   const [messageCount, setMessageCount] = useState(0);
   
@@ -27,7 +30,7 @@ const WebSocketComponent = (props) => {
       socket.send('Hello, server!');
       Swal.fire({
         title: 'opened connection!',
-        text: "thanks",
+        text: t(" Thanks"),
         icon: 'success',
       });
       
@@ -69,9 +72,9 @@ const WebSocketComponent = (props) => {
     socket.addEventListener('close', (event) => {
       console.log('WebSocket connection closed:', event);
       Swal.fire({
-        title: 'closed connection!',
-        text: "thanks",
-        icon: 'error',
+        title: t("cnxFermé"),
+        text: t("Thanks"),
+        icon: t('error'),
       });
       if(speakvoice){
         synthesis.speak(closed);
@@ -82,9 +85,9 @@ const WebSocketComponent = (props) => {
     // Connection error
     socket.addEventListener('error', (event) => {
       Swal.fire({
-        title: 'connection error!',
-        text: "thanks",
-        icon: 'error',
+        title: t('conxErr'),
+        text: t(" Thanks"),
+        icon: t('error'),
       });
       console.error('Connection error:', event);
       

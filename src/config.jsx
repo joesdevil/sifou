@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
+
 
 export default function Config() {
    const [rangDurationValue, setRageDurationValue] = useState(0);
@@ -17,32 +19,44 @@ export default function Config() {
       }
    };
 
+   // Utilisez la fonction useTranslation pour obtenir les fonctions de traduction
+   const { t, i18n } = useTranslation();
+
+   const handleChangeLangue = (event) => {
+      const nouvelleLangue = event.target.value;
+      i18n.changeLanguage(nouvelleLangue);
+    };
+
    return (
       <div className="p-4">
-         <h4 className="pr-color">All Settings</h4>
+         <h4 className="pr-color">{t('All Settings')}</h4>
          <div className="row row-cols-lg-2">
             <div>
                <div className=" bg-white p-4 rounded-3">
                   <div className="gnrl">
                      <div className="d-flex justify-content-between">
-                        <h5 className="pr-color">General settings :</h5>
+                        <h5 className="pr-color">{t('General settings :')}</h5>
                         <button className="btn btn-sm fw-bold btn-outline-pr">
-                           <small>Change password</small>
+                           <small>{t('Change password')}</small>
                            <i class="bi bi-arrow-right-short"></i>
                         </button>
                      </div>
                      <div className="row my-4">
                         <div className="col-8 border pr-color p-3">
-                           <b className="align-middle">Language</b>
+                           <b className="align-middle">{t('Language')}</b>
                         </div>
                         <div className="col-4 border p-3">
-                           <select class="form-select form-select-sm">
-                              <option selected>English</option>
-                              <option value="FR">French</option>
+                           <select 
+                           class="form-select form-select-sm"
+                           value={i18n.language}
+                           onChange={handleChangeLangue}
+                           >
+                              <option value="en">{t('English')}</option>
+                              <option value="fr">{t('French')}</option>
                            </select>
                         </div>
                         <div className="col-8 border border-top-0 pr-color p-3">
-                           <b className="align-middle">Display mode</b>
+                           <b className="align-middle">{t('Display mode')}</b>
                         </div>
                         <div className="col-4 border border-top-0 p-3">
                            <div class="form-check float-end form-switch">
@@ -53,49 +67,49 @@ export default function Config() {
                   </div>
                   <div className="Alerts-&-Popups">
                      <div className="d-flex pt-4 justify-content-between">
-                        <h5 className="pr-color">Alerts & Popups :</h5>
+                        <h5 className="pr-color">{t('Alerts & Popups :')}</h5>
                         <button className="btn btn-sm fw-bold btn-outline-pr">
-                           <small>Reset History</small>
+                           <small>{t('Reset History')}</small>
                            <i class="bi bi-arrow-right-short"></i>
                         </button>
                      </div>
                      <div className="row my-4">
                         <div className="col-8 border pr-color pt-3">
-                           <b className="align-middl">Send alerts as emails</b>
+                           <b className="align-middl">{t('Send alerts as emails')}</b>
                         </div>
                         <div className="col-4 border pt-3">
                            <div class="form-check float-end form-switch">
                               <input class="form-check-input" type="checkbox" />
                            </div>
                            <div class="form-check float-start form-switch">
-                              <p className="pr-color small">Enabled</p>
+                              <p className="pr-color small">{t('Enabled')}</p>
                            </div>
                         </div>
                         <div className="col-8 border pr-color pt-3">
-                           <b className="align-middl">Switch voice on/off</b>
+                           <b className="align-middl">{t('Switch voice on/off')}</b>
                         </div>
                         <div className="col-4 border pt-3">
                            <div class="form-check float-end form-switch">
                               <input class="form-check-input" type="checkbox" />
                            </div>
                            <div class="form-check float-start form-switch">
-                              <p className="pr-color small">Disabled</p>
+                              <p className="pr-color small">{t('Disabled')}</p>
                            </div>
                         </div>
                         <div className="col-8 border pr-color pt-3">
-                           <b className="align-middl">Alerts sounds</b>
+                           <b className="align-middl">{t('Alerts sounds')}</b>
                         </div>
                         <div className="col-4 border pt-3">
                            <div class="form-check float-end form-switch">
                               <input class="form-check-input" type="checkbox" />
                            </div>
                            <div class="form-check float-start form-switch">
-                              <p className="pr-color small">Disabled</p>
+                              <p className="pr-color small">{t('Disabled')}</p>
                            </div>
                         </div>
                         <div className="col-8 border pr-color pt-3">
                            <b className="align-middl">
-                              Display alerts as popups
+                              {t('Display alerts as popups')}
                            </b>
                         </div>
                         <div className="col-4 border pt-3">
@@ -103,31 +117,31 @@ export default function Config() {
                               <input class="form-check-input" type="checkbox" />
                            </div>
                            <div class="form-check float-start form-switch">
-                              <p className="pr-color small">Disabled</p>
+                              <p className="pr-color small">{t('Disabled')}</p>
                            </div>
                         </div>
                      </div>
                   </div>
                   <div className="reports">
                      <div className="d-flex justify-content-between">
-                        <h5 className="pr-color">Reports :</h5>
+                        <h5 className="pr-color">{t('Reports :')}</h5>
                         <button className="btn btn-sm fw-bold btn-outline-pr">
-                           <small>Export As</small>
+                           <small>{t('Export As')}</small>
                            <i class="bi bi-arrow-right-short"></i>
                         </button>
                      </div>
                      <div className="row my-4">
                         <div className="col-6 border pr-color p-3">
-                           <b className="align-middle">Auto-save reports</b>
+                           <b className="align-middle">{t('Auto-save reports')}</b>
                         </div>
                         <div className="col-6 border p-3">
                            <select class="form-select form-select-sm">
-                              <option selected>Enabled (Weekly)</option>
-                              <option value="FR">Enabled (monthly)</option>
+                              <option selected>{t('Enabled (Weekly)')}</option>
+                              <option value="FR">{t('Enabled (monthly)')}</option>
                            </select>
                         </div>
                         <div className="col-6 border border-top-0 pr-color p-3">
-                           <b className="align-middle">Display mode</b>
+                           <b className="align-middle">{t('Display mode')}</b>
                         </div>
                         <div className="col-6 border border-top-0 p-3">
                            <div
@@ -145,15 +159,15 @@ export default function Config() {
                <div className="bg-white p-4 rounded-3">
                   <div className="Cam-Recording">
                      <div className="d-flex justify-content-between">
-                        <h5 className="pr-color">Camera Recording :</h5>
+                        <h5 className="pr-color">{t('Camera Recording :')}</h5>
                         <button className="btn btn-sm fw-bold btn-outline-pr">
-                           <small>Reset Cache</small>
+                           <small>{t('Reset Cache')}</small>
                            <i class="bi bi-arrow-right-short"></i>
                         </button>
                      </div>
                      <div className="row my-4">
                         <div className="col-6 border pr-color p-3">
-                           <b className="align-middle">Cache duration (sec)</b>
+                           <b className="align-middle">{t('Cache duration (sec)')}</b>
                         </div>
                         <div className="col-6 border p-3">
                            <span className="btn-outline-pr rounded-1 small px-2 py-1">
@@ -161,7 +175,7 @@ export default function Config() {
                            </span>
                            <input
                               type="range"
-                              onChange={(e) => changeRangeValue(e, 1)}                              className="float-end mt-1 pr-bg w-75"
+                              onChange={(e) => changeRangeValue(e, 1)} className="float-end mt-1 pr-bg w-75"
                               name="vol"
                               value={rangDurationValue}
                               min="0"
@@ -169,7 +183,7 @@ export default function Config() {
                            />
                         </div>
                         <div className="col-6 border border-top-0 pr-color p-3">
-                           <b className="align-middle">Display mode</b>
+                           <b className="align-middle">{t('Display mode')}</b>
                         </div>
                         <div className="col-6 border border-top-0 p-3">
                            <div
@@ -183,15 +197,15 @@ export default function Config() {
                   </div>
                   <div className="Cam-Set">
                      <div className="d-flex justify-content-between">
-                        <h5 className="pr-color">Camera setup :</h5>
+                        <h5 className="pr-color">{t('Camera setup :')}</h5>
                         <button className="btn btn-sm fw-bold btn-outline-pr">
-                           <small>Add zone name</small>
+                           <small>{t('Add zone name')}</small>
                            <i class="bi bi-arrow-right-short"></i>
                         </button>
                      </div>
                      <div className="row my-4">
                         <div className="col-6 border pr-color p-3">
-                           <b className="align-middle">Cache duration (sec)</b>
+                           <b className="align-middle">{t('Cache duration (sec)')}</b>
                         </div>
                         <div className="col-6 border p-3">
                            <span className="btn-outline-pr rounded-1 small px-2 py-1">
@@ -213,14 +227,14 @@ export default function Config() {
                         </div>
                         <div className="col-4 border p-3">
                            <select class="form-select form-select-sm">
-                              <option selected>Enabled (Weekly)</option>
-                              <option value="FR">Enabled (monthly)</option>
+                              <option selected>{t('Enabled (Weekly)')}</option>
+                              <option value="FR">{t('Enabled (monthly)')}</option>
                            </select>
                         </div>
                         <div className="col-4 border p-3">
                            <select class="form-select form-select-sm">
-                              <option selected>Enabled (Weekly)</option>
-                              <option value="FR">Enabled (monthly)</option>
+                              <option selected>{t('Enabled (Weekly)')}</option>
+                              <option value="FR">{t('Enabled (monthly)')}</option>
                            </select>
                         </div>
 

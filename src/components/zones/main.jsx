@@ -1,17 +1,20 @@
 import { Link } from "react-router-dom";
 import Zone from "./zone";
+import { useTranslation } from 'react-i18next';
 
 export default function Main() {
+   
+   const { t } = useTranslation();
    return (
       <div className=" p-1 p-sm-5 zones">
          <div className="d-flex justify-content-between mb-4 align-items-center">
-            <h3 className="pr-color m-lg-0 mt-4 ms-3">All Zones</h3>
+            <h3 className="pr-color m-lg-0 mt-4 ms-3">{t('All Zones')}</h3>
             <Link className="link" to="/zones/add">
                <button
                   className="btn pr-bg text-white btn-sm mt-4 ms-3 px-4 py-2"
                   style={{ width: "fit-content" }}
                >
-                  <i class="bi bi-plus-circle-fill"></i> Add Zone
+                  <i class="bi bi-plus-circle-fill"></i> {t('Add Zone')}
                </button>
             </Link>
          </div>
@@ -21,16 +24,16 @@ export default function Main() {
                   <tr className="">
                      <th scope="col">ID</th>
                      <th className="pr-color" scope="col">
-                        Zone's Features
+                        {t("Zone's Features")}
                      </th>
                      <th className="pr-color" scope="col">
-                        No. of issues
+                        {t('No. of issues')}
                      </th>
                      <th className="pr-color" scope="col">
-                        Solved Issues
+                        {t('Solved Issues')}
                      </th>
                      <th className="pr-color" scope="col">
-                        Pop-up Alerts
+                        {t('Pop-up Alerts')}
                      </th>
                      <th className="pr-color" scopetd="col"></th>
                   </tr>

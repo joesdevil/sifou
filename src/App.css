@@ -1,22 +1,28 @@
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800;900&display=swap");
+
 * {
   box-sizing: border-box !important;
   padding: 0;
   font-family: "Raleway", sans-serif;
 }
+
 .haz * {
   margin: 0;
 }
+
 .pr-color {
   color: #7d0381 !important;
 }
+
 .pr-bg {
   background-color: #7d0381 !important;
 }
+
 .btn-outline-pr {
   color: #7d0381 !important;
   border: solid 1px #7d0381;
 }
+
 .btn-outline-pr:hover {
   background-color: #7d0381 !important;
   color: #f1f1f1 !important;
@@ -31,10 +37,12 @@
 body {
   background-color: #ffebff;
 }
+
 button {
   border: none;
   outline: none !important;
 }
+
 h1,
 h2,
 h3,
@@ -43,6 +51,7 @@ h5,
 h6 {
   font-weight: 700;
 }
+
 nav {
   background: linear-gradient(96deg, #7d0381 28.67%, #37004a 116.25%);
 }
@@ -50,11 +59,13 @@ nav {
 nav ul li img {
   width: 23px;
 }
+
 nav ul .link {
   padding: 15px 25px;
   color: #fff7ff;
   font-size: 1.4rem;
 }
+
 nav ul li {
   padding: 12px 18px;
   color: #fff7ff;
@@ -79,42 +90,51 @@ nav .link:hover,
   height: 45px;
   cursor: pointer;
 }
+
 .zones .zone-edit svg {
   padding: 12px;
   width: 55px;
   height: 55px;
   cursor: pointer;
 }
+
 .zones svg.disabled {
   background-color: #ffeaff;
   border: solid 2px #7d038145;
   color: #7d038128 !important;
 }
+
 .zones .feats {
   display: flex;
   margin-top: 9px;
 }
+
 .zones .feats .feat {
   cursor: pointer;
   margin: 0 20px !important;
   margin-left: 0 !important;
 }
+
 .form-check-input {
   cursor: pointer;
-  transform: scale(1.2) ;
+  transform: scale(1.2);
 
 }
+
 .form-check-input:checked {
   background-color: #7d0381;
 }
+
 .zones .form-check-input {
   cursor: pointer;
   transform: scale(1.5);
 }
+
 .zone-edit .form-check-input {
   cursor: pointer;
-  transform: scale(1.2) ;
+  transform: scale(1.2);
 }
+
 .zones button {
   width: 110px;
   font-size: 0.85rem;
@@ -123,28 +143,32 @@ nav .link:hover,
 .zones .zone-image {
   height: 490px;
 }
+
 .zones .zone-image img {
   width: 100%;
   height: 100%;
 }
+
 .all-cam img {
- object-fit: cover;
- width: 100%;
- height: 100%;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
 }
+
 .all-cam .zone-image {
   height: 350px;
 }
-.all-cam .zone-image .cam-info{
+
+.all-cam .zone-image .cam-info {
   background-color: #7d0381c5;
 }
 
 
-.all-cam .zone-image .icon{
-padding-top: 9.1px;
-cursor: pointer;
-width: 45px;
-height:45px;
+.all-cam .zone-image .icon {
+  padding-top: 9.1px;
+  cursor: pointer;
+  width: 45px;
+  height: 45px;
 }
 
 
@@ -159,30 +183,30 @@ height:45px;
 /* added by sifo */
 
 
-.selectbox{
+.selectbox {
   height: 42px;
-padding: 10px;
-border-radius: 50px;
-border: none;
-background: #FFD5FF;
-color: #7D0381;
-font-size: 17px;
-margin-left: 18px;
+  padding: 10px;
+  border-radius: 50px;
+  border: none;
+  background: #FFD5FF;
+  color: #7D0381;
+  font-size: 17px;
+  margin-left: 18px;
 }
 
-.statflex{
+.statflex {
   display: flex;
   justify-content: space-between;
   width: 100%;
 }
 
-.statflex div:first-of-type{
+.statflex div:first-of-type {
   width: 60%;
   display: flex;
 }
 
 
-.statflex div:nth-of-type(2){
+.statflex div:nth-of-type(2) {
   width: 40%;
 }
 
@@ -206,27 +230,35 @@ margin-left: 18px;
   .zones {
     width: fit-content;
   }
+
   .zones svg {
     width: 35px;
     height: 35px;
   }
+
   .zones .feats .feat {
     margin: 0 3px !important;
   }
+
   .zones .form-check-input {
     transform: scale(1);
   }
+
   .zones button {
     width: max-content;
     padding: 2px 5px !important;
     font-size: 1rem;
   }
+
   .zones button span {
     display: none;
   }
-  .zones .si, .zones .ni {
+
+  .zones .si,
+  .zones .ni {
     font-size: small !important;
   }
+
   .zones th {
     font-size: x-small;
   }

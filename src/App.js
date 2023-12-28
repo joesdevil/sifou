@@ -1,4 +1,4 @@
-import React from 'react';
+import {React, useEffect} from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Nav from './components/nav';
@@ -10,12 +10,19 @@ import Cameras from './cameras';
 import Stats from './stats';
 import Config from './config';
 import FullscreenButton from './flw';
+ 
+
+
+
+
+
 
 function App() {
   return (
     <Router>
       <div className="App">
         <Nav />
+ 
         <FullscreenButton />
         <Routes>
         <Route path="/" exact element={<Haz />} />
@@ -26,6 +33,7 @@ function App() {
         <Route path="/analytics" exact element={<Stats />} />
         <Route path="/config" exact element={<Config />} />
         </Routes>
+        
       </div>
     </Router>
   );

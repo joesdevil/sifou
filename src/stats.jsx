@@ -1,4 +1,4 @@
-import React from "react";
+import {React,useEffect} from "react";
 import "chart.js/auto";
 import DoughnutS from "./components/stats/DoughnutS";
 import LineS from "./components/stats/lineS";
@@ -8,7 +8,51 @@ import { useTranslation } from 'react-i18next';
 
 export default function Stats() {
    // Line chart data
+   useEffect(() => {
 
+      const isDark = localStorage.getItem('isDark' );
+      
+      if(isDark== 'true'){
+         document.body.classList.add("dark")
+         document.querySelectorAll(".bg-white").forEach(ele=>{
+            ele.classList.add("dark") 
+         })
+         document.querySelectorAll(".pr-color").forEach(ele=>{
+            ele.classList.add("dark") 
+         })
+    
+         document.querySelectorAll(".btn-outline-pr").forEach(ele=>{
+            ele.classList.add("dark") 
+         })
+         document.querySelectorAll(".form-select").forEach(ele=>{
+            ele.classList.add("dark") 
+         })
+         document.querySelectorAll("h3").forEach(ele=>{
+            ele.classList.add("dark") 
+         })
+         document.querySelector("path").classList.add("dark") 
+      }else{
+         document.body.classList.remove("dark")
+         document.querySelectorAll(".bg-white").forEach(ele=>{
+            ele.classList.remove("dark")
+         })
+         document.querySelectorAll(".pr-color").forEach(ele=>{
+            ele.classList.remove("dark") 
+         })
+         document.querySelectorAll(".btn-outline-pr").forEach(ele=>{
+            ele.classList.remove("dark") 
+         })
+         document.querySelectorAll(".form-select").forEach(ele=>{
+            ele.classList.remove("dark") 
+         })
+         document.querySelectorAll("h3").forEach(ele=>{
+            ele.classList.remove("dark") 
+         })
+         document.querySelector("path").classList.remove("dark") 
+       
+      }
+    }, []);
+          
    const { t } = useTranslation();
    return (
       <div className="px-4 py-3">

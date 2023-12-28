@@ -282,3 +282,30 @@ nav .link:hover,
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+
+
+body.dark{
+  background-color: #3a1e3a;
+}
+
+.bg-white.dark{
+ background-color:  #31294d !important;
+}
+
+.pr-color.dark,.btn-outline-pr.dark,h3.dark,h4.dark,p.dark{
+  color: #f8f9fa !important;
+}
+.form-select.dark{
+  background-color: #37004a !important;
+  color: #f8f9fa !important;
+}
+
+path.dark{
+  fill: aliceblue;
+}
+
+
+.table.dark,th.dark,tr.dark, td.dark{
+  background-color: #31294d !important;
+  color: #f8f9fa !important;
+}

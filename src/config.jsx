@@ -22,22 +22,88 @@ export default function Config() {
    // Utilisez la fonction useTranslation pour obtenir les fonctions de traduction
    const { t, i18n } = useTranslation();
 
-   const handleChangeLangue = (event) => {
-      const nouvelleLangue = event.target.value;
+   
+
+
+   const [nouvelleLangue, setnouvelleLangue] = useState(
+      localStorage.getItem('nouvelleLangue')
+      
+   );
+   useEffect(() => {
+      localStorage.setItem('nouvelleLangue', nouvelleLangue);
       i18n.changeLanguage(nouvelleLangue);
+   }, [nouvelleLangue]);
+
+   const handleChangeLangue = (event) => {
+      setnouvelleLangue(event.target.value)
+      console.log(localStorage.getItem('nouvelleLangue'))
+      
    };
+
    const [isVoiceOver, setisVoiceOver] = useState(
       localStorage.getItem('isVoiceOver') === 'true'
    );
 
+
    const [isPoped, setisPoped] = useState(
       localStorage.getItem('isPoped') === 'true'
    );
+
+   const [isDark, setisDark] = useState(
+      localStorage.getItem('isDark') === 'true'
+   );
+
+
    const [isAlertEmail, setisAlertEmail] = useState(
       localStorage.getItem('isAlertEmail') === 'true'
    );
 
    // Update localStorage when the state changes
+   useEffect(() => {
+
+      localStorage.setItem('isDark', isDark);
+      console.log(isDark,localStorage.getItem('isDark'))
+      if(isDark){
+         document.body.classList.add("dark")
+         document.querySelectorAll(".bg-white").forEach(ele=>{
+            ele.classList.add("dark") 
+         })
+         document.querySelectorAll(".pr-color").forEach(ele=>{
+            ele.classList.add("dark") 
+         })
+
+         document.querySelectorAll(".btn-outline-pr").forEach(ele=>{
+            ele.classList.add("dark") 
+         })
+         document.querySelectorAll(".form-select").forEach(ele=>{
+            ele.classList.add("dark") 
+         })
+         document.querySelectorAll("h3").forEach(ele=>{
+            ele.classList.add("dark") 
+         })
+         document.querySelector("path").classList.add("dark") 
+      }else{
+         document.body.classList.remove("dark")
+         document.querySelectorAll(".bg-white").forEach(ele=>{
+            ele.classList.remove("dark")
+         })
+         document.querySelectorAll(".pr-color").forEach(ele=>{
+            ele.classList.remove("dark") 
+         })
+         document.querySelectorAll(".btn-outline-pr").forEach(ele=>{
+            ele.classList.remove("dark") 
+         })
+         document.querySelectorAll(".form-select").forEach(ele=>{
+            ele.classList.remove("dark") 
+         })
+         document.querySelectorAll("h3").forEach(ele=>{
+            ele.classList.remove("dark") 
+         })
+         document.querySelector("path").classList.remove("dark") 
+       
+      }
+   }, [isDark]);
+
    useEffect(() => {
       localStorage.setItem('isVoiceOver', isVoiceOver);
    }, [isVoiceOver]);
@@ -56,6 +122,11 @@ export default function Config() {
    const toggleModePop = () => {
       setisPoped((prevMode) => !prevMode);
    };
+   const toggleModeDark = () => {
+      setisDark((prevMode) => !prevMode);
+      localStorage.getItem('isDark')
+   };
+
    const toggleModeAlertEmail = () => {
       console.log(isAlertEmail)
       setisAlertEmail((prevMode) => !prevMode);
@@ -126,7 +197,7 @@ export default function Config() {
                         </div>
                         <div className="col-4 border border-top-0 p-3">
                            <div class="form-check float-end form-switch">
-                              <input class="form-check-input" type="checkbox" />
+                              <input class="form-check-input" type="checkbox" checked={isDark} onChange={toggleModeDark} />
                            </div>
                         </div>
                      </div>
@@ -210,7 +281,7 @@ export default function Config() {
                            </select>
                         </div>
                         <div className="col-6 border border-top-0 pr-color p-3">
-                           <b className="align-middle">{t('Display mode')}</b>
+                           <b className="align-middle">{t('Display path')}</b>
                         </div>
                         <div className="col-6 border border-top-0 p-3">
                            <div

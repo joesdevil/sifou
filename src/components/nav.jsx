@@ -23,8 +23,11 @@ export default function Nav() {
           <i className="bi bi-graph-up"></i>
         </NavLink>
         <NavLink className="link" to="/config" activeClassName="active">
-        <i class="bi bi-gear-fill"></i>
-                </NavLink>
+          <i class="bi bi-gear-fill"></i>
+        </NavLink>
+        <NavLink className="link" to="/users" activeClassName="active">
+          <i className="bi bi-person"></i>
+        </NavLink>
       </ul>
       <div className="logo me-3">
         <img src={logo} height="26px" alt="" />

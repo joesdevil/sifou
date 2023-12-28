@@ -309,3 +309,9 @@ path.dark{
   background-color: #31294d !important;
   color: #f8f9fa !important;
 }
+
+.custom-width {
+  width: 70px;
+  margin-right: 10px;
+  height: auto;
+}

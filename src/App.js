@@ -10,7 +10,8 @@ import Cameras from './cameras';
 import Stats from './stats';
 import Config from './config';
 import FullscreenButton from './flw';
- 
+import Users from './users';
+
 
 
 
@@ -32,6 +33,8 @@ function App() {
         <Route path="/cameras" exact element={<Cameras />} />
         <Route path="/analytics" exact element={<Stats />} />
         <Route path="/config" exact element={<Config />} />
+        <Route path="/users" exact element={<Users />} />
+
         </Routes>
         
       </div>

@@ -4,6 +4,11 @@ import { useTranslation } from 'react-i18next';
 
 export default function Listusers() {
    const { t } = useTranslation();
+   const user='admin'
+   let adminuser=Boolean
+
+   user=='admin'?adminuser=true:adminuser=false;
+
 
    return (
       <div className=" p-1 p-sm-5 zones">
@@ -28,6 +33,12 @@ export default function Listusers() {
                      <th className="pr-color" scope="col">
                         Email
                      </th>
+                     {adminuser && (
+                        <th className="pr-color" scope="col">
+                        Password
+                        </th>
+                     )}
+                     
                      <th className="pr-color" scope="col">
                         Role
                      </th>

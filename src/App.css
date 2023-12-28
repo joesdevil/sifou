@@ -315,3 +315,7 @@ path.dark{
   margin-right: 10px;
   height: auto;
 }
+
+.bi-arrows-fullscreen.dark{
+  color: #f8f9fa !important;
+}

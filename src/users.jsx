@@ -1,7 +1,7 @@
 import Listusers from "./components/users/listusers";
 import {useEffect} from "react";
 
-export default function Users() {
+export default function Users(props) {
   useEffect(() => {
 
     const isDark = localStorage.getItem('isDark' );
@@ -49,7 +49,7 @@ export default function Users() {
         
   return(
     <>
-    <Listusers></Listusers>
+    <Listusers user={props.user} ></Listusers>
   </>
   )
 }

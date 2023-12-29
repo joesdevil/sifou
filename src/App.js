@@ -19,10 +19,11 @@ import Users from './users';
 
 
 function App() {
+  const user='admin'
   return (
     <Router>
       <div className="App">
-        <Nav />
+        <Nav user={user} />
  
         <FullscreenButton />
         <Routes>
@@ -32,8 +33,9 @@ function App() {
         <Route path="/zones/add" exact element={<Add />} />
         <Route path="/cameras" exact element={<Cameras />} />
         <Route path="/analytics" exact element={<Stats />} />
-        <Route path="/config" exact element={<Config />} />
-        <Route path="/users" exact element={<Users />} />
+        {user=='admin'?(<Route path="/config" exact element={<Config user={user} />} />):''}
+        
+        <Route path="/users" exact element={<Users user={user}  />} />
 
         </Routes>
         

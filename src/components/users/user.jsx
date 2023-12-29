@@ -3,10 +3,10 @@ import { useTranslation } from 'react-i18next';
 import UserImage from "../../images/R.jpg";
 
 
-export default function User() {
+export default function User(props) {
     const { t } = useTranslation();
 
-    const user='admin'
+    const user=props.user
     let adminuser=Boolean
 
     user=='admin'?adminuser=true:adminuser=false;
@@ -100,7 +100,7 @@ export default function User() {
                     james.miller@example.com
                 </td>
                 {adminuser && (<td className="ni fw-semibold align-middle fs-7 pr-color pwd">
-                    james.miller 
+                    <input className="p-1 m-0 border-0 bg-white pr-color h-100 w-auto" type="text" value="james.miller" /> 
                 </td>)}
                 
                 <td className="ni fw-semibold align-middle fs-7 pr-color">
@@ -112,7 +112,7 @@ export default function User() {
                               <option value="admin">admin</option>
                               <option value="employee">employee</option>
                            </select>
-                        ):('admisn')}
+                        ):('---')}
                 </td>
 
                 {adminuser && ( <td className="" >

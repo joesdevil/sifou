@@ -1,7 +1,11 @@
 import { NavLink } from 'react-router-dom';
 import logo from '../images/logo.svg';
 
-export default function Nav() {
+export default function Nav(props) {
+
+  const user=props.user
+
+
   return (
     <nav className="d-flex m-0 shadow align-items-center justify-content-between">
       <ul className="list-unstyled d-flex align-content-center m-0">
@@ -26,9 +30,11 @@ export default function Nav() {
         <NavLink className="link" to="/users" activeClassName="active">
           <i className="bi bi-person"></i>
         </NavLink>
-        <NavLink className="link" to="/config" activeClassName="active">
+
+        {user =='admin'?(<NavLink className="link" to="/config" activeClassName="active">
           <i class="bi bi-gear-fill"></i>
-        </NavLink>
+        </NavLink>):''}
+        
       </ul>
       <div className="logo me-3">
         <img src={logo} height="26px" alt="" />

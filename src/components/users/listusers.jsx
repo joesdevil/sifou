@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
 import User from "./user";
 import { useTranslation } from 'react-i18next';
+import AddUser from "../pop-up/add-user";
 
-export default function Listusers() {
+export default function Listusers(props) {
    const { t } = useTranslation();
-   const user='admin'
+   const user=props.user
    let adminuser=Boolean
 
    user=='admin'?adminuser=true:adminuser=false;
@@ -17,10 +18,11 @@ export default function Listusers() {
             <Link className="link" to="">
                <button
                   className="btn pr-bg text-white btn-sm mt-4 ms-3 px-4 py-2"
-                  style={{ width: "fit-content" }}
+                  style={{ width: "fit-content" }}  data-bs-toggle="modal" data-bs-target="#exampleModaluser"
                >
                   <i class="bi bi-plus-circle-fill"></i> {t('Add User')}
                </button>
+               <AddUser></AddUser>
             </Link>
          </div>
          <div className="bg-white mb-2 px-4 py-2 rounded-3">
@@ -50,10 +52,10 @@ export default function Listusers() {
                </thead>
                <tbody>
 
-                  <User></User>
-                  <User></User>
-                  <User></User>
-                  <User></User>
+                  <User user={user}></User>
+                  <User user={user}></User>
+                  <User user={user}></User>
+                  <User user={user}></User>
                </tbody>
             </table>
          </div>

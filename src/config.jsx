@@ -7,6 +7,13 @@ import Cache from "./components/pop-up/cache";
 import ZoneAdd from "./components/pop-up/add-zone";
 
 export default function Config() {
+
+
+   const myStyle = {
+      width: '100%',
+    };
+
+
    const [rangDurationValue, setRageDurationValue] = useState(0);
    const [rangCamValue, setRageCamValue] = useState(0);
 
@@ -29,6 +36,10 @@ export default function Config() {
    const [nouvelleLangue, setnouvelleLangue] = useState(
       localStorage.getItem("nouvelleLangue")
    );
+   const [displaypathsave, setdisplaypathsave] = useState(
+      localStorage.getItem("displaypathsave")
+   );
+
    useEffect(() => {
       localStorage.setItem("nouvelleLangue", nouvelleLangue);
       i18n.changeLanguage(nouvelleLangue);
@@ -100,6 +111,10 @@ export default function Config() {
    }, [isDark]);
 
    useEffect(() => {
+      localStorage.setItem("displaypathsave", displaypathsave);
+   }, [displaypathsave]);
+
+   useEffect(() => {
       localStorage.setItem("isVoiceOver", isVoiceOver);
    }, [isVoiceOver]);
 
@@ -125,6 +140,11 @@ export default function Config() {
    const toggleModeAlertEmail = () => {
       console.log(isAlertEmail);
       setisAlertEmail((prevMode) => !prevMode);
+   };
+
+   const savepath = (e) => {
+      setdisplaypathsave(e.target.value);
+       
    };
 
    const handleReset = () => {
@@ -326,7 +346,18 @@ export default function Config() {
                               className="pr-color "
                               style={{ overflow: "auto" }}
                            >
-                              C:\Users\username\AppData\Roamin...
+                              
+                           <input 
+                              type="text"
+                                 onChange={savepath}
+                                 value={displaypathsave}
+                              placeholder=" C:\Users\username\AppData\Roamin..."
+                              className="m-0 border-0 bg-white pr-color h-100  "
+                              style={myStyle}
+                           />
+                            
+                      
+                             
                            </div>
                         </div>
                      </div>
@@ -416,9 +447,13 @@ export default function Config() {
                         </div>
                         <div className="col-4 border p-3">
                            <select class="form-select form-select-sm">
-                              <option selected>{t("Enabled (Weekly)")}</option>
+                              <option selected>
+                                 {/* {t("Enabled (Weekly)")} */}
+                                 zone 2
+                                 </option>
                               <option value="FR">
-                                 {t("Enabled (monthly)")}
+                                 {/* {t("Enabled (monthly)")} */}
+                                 zone 1
                               </option>
                            </select>
                         </div>

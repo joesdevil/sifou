@@ -15,7 +15,7 @@ export default function User() {
 
         const isDark = localStorage.getItem('isDark' );
         
-        if(isDark== 'true'){
+        if(isDark === 'true'){
            document.body.classList.add("dark")
            document.querySelectorAll(".bg-white").forEach(ele=>{
               ele.classList.add("dark") 
@@ -108,7 +108,6 @@ export default function User() {
                            <select
                               class="form-select form-select-sm"
                               
-                           
                            >
                               <option value="admin">admin</option>
                               <option value="employee">employee</option>

@@ -6,7 +6,7 @@ function LastHaz() {
   return (
     <small>
       <>
-        <span>
+        <span  className="pr-color">
           Camera 02 / Area 3 / <small>23/11/2023 {t('at')} 6:00 PM</small>
         </span>
           <div className="rounded-4 bg-white p-3 py-4 shadow">

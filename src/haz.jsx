@@ -60,7 +60,7 @@ function Haz() {
   }, []);
   
   return (
-    <div className="row row-cols-md-2 p-4">
+    <div className="row row-cols-md-2 p-4 m-0">
       <div className="">
         <h3 className="pr-color mb-2">{t('Latest Alert')}</h3>
         <LastHaz></LastHaz>

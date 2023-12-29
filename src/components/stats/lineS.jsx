@@ -2,6 +2,13 @@ import { Line } from "react-chartjs-2";
 import { useTranslation } from 'react-i18next';
 
 export default function LineS() {
+   const isDark = localStorage.getItem("isDark");
+   function dark() {
+      if (isDark == "true") {
+         return "white";
+      }
+   }
+
    const { t } = useTranslation();
 
    const lineData = {
@@ -56,14 +63,25 @@ export default function LineS() {
       maintainAspectRatio: false,
       plugins: {
          legend: {
+            labels: {
+               color: dark()
+            },
             display: true,
             position: "bottom",
          },
       },
 
       scales: {
+         x: { // "x" for Chart.js version 3.x, or "xAxes" for version 2.x
+            ticks: {
+                color: dark() // Change X-axis labels color
+            },
+            
+        },
          y: {
-            beginAtZero: true,
+            ticks: {
+               color: dark() // Change Y-axis labels color
+           },            beginAtZero: true,
          },
       },
    };

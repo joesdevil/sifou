@@ -84,7 +84,7 @@ export default function Stats() {
          </div>
 
          <div className="row">
-            <div className="col-md-7">
+            <div className="col-md-7 ">
                <DoughnutS></DoughnutS>
                <LineS></LineS>
             </div>

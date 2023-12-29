@@ -13,7 +13,6 @@
 .pr-color {
   color: #7d0381 !important;
 }
-
 .pr-bg {
   background-color: #7d0381 !important;
 }
@@ -285,19 +284,24 @@ nav .link:hover,
 
 
 body.dark{
-  background-color: #3a1e3a;
+  background-color: #1A1A1A ;
 }
-
+input.dark::placeholder{
+  color: #eeee;
+}
+input::placeholder{
+  color: #7D0381;
+}
 .bg-white.dark{
- background-color:  #31294d !important;
+ background-color:  #5A025B !important;
 }
 
 .pr-color.dark,.btn-outline-pr.dark,h3.dark,h4.dark,p.dark{
-  color: #f8f9fa !important;
+  color: #fef0fe !important;
 }
 .form-select.dark{
-  background-color: #37004a !important;
-  color: #f8f9fa !important;
+  background-color: #4a004b !important;
+  color: #eee !important;
 }
 
 path.dark{
@@ -306,8 +310,8 @@ path.dark{
 
 
 .table.dark,th.dark,tr.dark, td.dark{
-  background-color: #31294d !important;
-  color: #f8f9fa !important;
+  background-color: #5A025B !important;
+  color: #eeee !important;
 }
 
 .custom-width {
@@ -318,4 +322,11 @@ path.dark{
 
 .bi-arrows-fullscreen.dark{
   color: #f8f9fa !important;
+}
+.text-secondary{
+  color: #969696ee !important;
+}
+
+.pr-colo {
+  color: #7d0381 !important;
 }

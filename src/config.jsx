@@ -1,6 +1,10 @@
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-
+import Chgpwd from "./components/pop-up/chgpwd";
+import Hist from "./components/pop-up/hist";
+import Exprt from "./components/pop-up/exprt";
+import Cache from "./components/pop-up/cache";
+import ZoneAdd from "./components/pop-up/add-zone";
 
 export default function Config() {
    const [rangDurationValue, setRageDurationValue] = useState(0);
@@ -22,98 +26,89 @@ export default function Config() {
    // Utilisez la fonction useTranslation pour obtenir les fonctions de traduction
    const { t, i18n } = useTranslation();
 
-   
-
-
    const [nouvelleLangue, setnouvelleLangue] = useState(
-      localStorage.getItem('nouvelleLangue')
-      
+      localStorage.getItem("nouvelleLangue")
    );
    useEffect(() => {
-      localStorage.setItem('nouvelleLangue', nouvelleLangue);
+      localStorage.setItem("nouvelleLangue", nouvelleLangue);
       i18n.changeLanguage(nouvelleLangue);
    }, [nouvelleLangue]);
 
    const handleChangeLangue = (event) => {
-      setnouvelleLangue(event.target.value)
-      console.log(localStorage.getItem('nouvelleLangue'))
-      
+      setnouvelleLangue(event.target.value);
+      console.log(localStorage.getItem("nouvelleLangue"));
    };
 
    const [isVoiceOver, setisVoiceOver] = useState(
-      localStorage.getItem('isVoiceOver') === 'true'
+      localStorage.getItem("isVoiceOver") === "true"
    );
 
-
    const [isPoped, setisPoped] = useState(
-      localStorage.getItem('isPoped') === 'true'
+      localStorage.getItem("isPoped") === "true"
    );
 
    const [isDark, setisDark] = useState(
-      localStorage.getItem('isDark') === 'true'
+      localStorage.getItem("isDark") === "true"
    );
 
-
    const [isAlertEmail, setisAlertEmail] = useState(
-      localStorage.getItem('isAlertEmail') === 'true'
+      localStorage.getItem("isAlertEmail") === "true"
    );
 
    // Update localStorage when the state changes
    useEffect(() => {
+      localStorage.setItem("isDark", isDark);
+      console.log(isDark, localStorage.getItem("isDark"));
+      if (isDark) {
+         document.body.classList.add("dark");
+         document.querySelectorAll(".bg-white").forEach((ele) => {
+            ele.classList.add("dark");
+         });
+         document.querySelectorAll(".pr-color").forEach((ele) => {
+            ele.classList.add("dark");
+         });
 
-      localStorage.setItem('isDark', isDark);
-      console.log(isDark,localStorage.getItem('isDark'))
-      if(isDark){
-         document.body.classList.add("dark")
-         document.querySelectorAll(".bg-white").forEach(ele=>{
-            ele.classList.add("dark") 
-         })
-         document.querySelectorAll(".pr-color").forEach(ele=>{
-            ele.classList.add("dark") 
-         })
-
-         document.querySelectorAll(".btn-outline-pr").forEach(ele=>{
-            ele.classList.add("dark") 
-         })
-         document.querySelectorAll(".form-select").forEach(ele=>{
-            ele.classList.add("dark") 
-         })
-         document.querySelectorAll("h3").forEach(ele=>{
-            ele.classList.add("dark") 
-         })
-         document.querySelector("path").classList.add("dark") 
-      }else{
-         document.body.classList.remove("dark")
-         document.querySelectorAll(".bg-white").forEach(ele=>{
-            ele.classList.remove("dark")
-         })
-         document.querySelectorAll(".pr-color").forEach(ele=>{
-            ele.classList.remove("dark") 
-         })
-         document.querySelectorAll(".btn-outline-pr").forEach(ele=>{
-            ele.classList.remove("dark") 
-         })
-         document.querySelectorAll(".form-select").forEach(ele=>{
-            ele.classList.remove("dark") 
-         })
-         document.querySelectorAll("h3").forEach(ele=>{
-            ele.classList.remove("dark") 
-         })
-         document.querySelector("path").classList.remove("dark") 
-       
+         document.querySelectorAll(".btn-outline-pr").forEach((ele) => {
+            ele.classList.add("dark");
+         });
+         document.querySelectorAll(".form-select").forEach((ele) => {
+            ele.classList.add("dark");
+         });
+         document.querySelectorAll("h3").forEach((ele) => {
+            ele.classList.add("dark");
+         });
+         document.querySelector("path").classList.add("dark");
+      } else {
+         document.body.classList.remove("dark");
+         document.querySelectorAll(".bg-white").forEach((ele) => {
+            ele.classList.remove("dark");
+         });
+         document.querySelectorAll(".pr-color").forEach((ele) => {
+            ele.classList.remove("dark");
+         });
+         document.querySelectorAll(".btn-outline-pr").forEach((ele) => {
+            ele.classList.remove("dark");
+         });
+         document.querySelectorAll(".form-select").forEach((ele) => {
+            ele.classList.remove("dark");
+         });
+         document.querySelectorAll("h3").forEach((ele) => {
+            ele.classList.remove("dark");
+         });
+         document.querySelector("path").classList.remove("dark");
       }
    }, [isDark]);
 
    useEffect(() => {
-      localStorage.setItem('isVoiceOver', isVoiceOver);
+      localStorage.setItem("isVoiceOver", isVoiceOver);
    }, [isVoiceOver]);
 
    useEffect(() => {
-      localStorage.setItem('isPoped', isPoped);
+      localStorage.setItem("isPoped", isPoped);
    }, [isPoped]);
 
    useEffect(() => {
-      localStorage.setItem('isAlertEmail', isAlertEmail);
+      localStorage.setItem("isAlertEmail", isAlertEmail);
    }, [isAlertEmail]);
 
    const toggleMode = () => {
@@ -124,20 +119,18 @@ export default function Config() {
    };
    const toggleModeDark = () => {
       setisDark((prevMode) => !prevMode);
-      localStorage.getItem('isDark')
+      localStorage.getItem("isDark");
    };
 
    const toggleModeAlertEmail = () => {
-      console.log(isAlertEmail)
+      console.log(isAlertEmail);
       setisAlertEmail((prevMode) => !prevMode);
    };
-
 
    const handleReset = () => {
       setisVoiceOver(false);
       setisPoped(false);
-      setisAlertEmail(false)
-
+      setisAlertEmail(false);
    };
 
    const [alertsAsEmail, setalertsAsEmail] = useState({
@@ -165,22 +158,26 @@ export default function Config() {
 
    return (
       <div className="p-4">
-         <h4 className="pr-color">{t('All Settings')}</h4>
+         <h4 className="pr-color">{t("All Settings")}</h4>
          <div className="row row-cols-lg-2">
             <div>
                <div className=" bg-white p-4 rounded-3">
                   <div className="gnrl">
                      <div className="d-flex justify-content-between">
-                        <h5 className="pr-color">{t('General settings :')}</h5>
-                        <button className="btn btn-sm fw-bold btn-outline-pr">
-                           <small>{t('Change password')}</small>
+                        <h5 className="pr-color">{t("General settings :")}</h5>
+
+                        <button className="btn btn-sm fw-bold btn-outline-pr"                            data-bs-toggle="modal"
+                           data-bs-target="#exampleModal"
+>
+                           <small>{t("Change password")}</small>
                            <i class="bi bi-arrow-right-short"></i>
                         </button>
+                                 <Chgpwd></Chgpwd>
 
-                     </div >
+                     </div>
                      <div className="row my-4">
                         <div className="col-8 border pr-color p-3">
-                           <b className="align-middle">{t('Language')}</b>
+                           <b className="align-middle">{t("Language")}</b>
                         </div>
                         <div className="col-4 border p-3">
                            <select
@@ -188,100 +185,141 @@ export default function Config() {
                               value={i18n.language}
                               onChange={handleChangeLangue}
                            >
-                              <option value="en">{t('English')}</option>
-                              <option value="fr">{t('French')}</option>
+                              <option value="en">{t("English")}</option>
+                              <option value="fr">{t("French")}</option>
                            </select>
                         </div>
                         <div className="col-8 border border-top-0 pr-color p-3">
-                           <b className="align-middle">{t('Display mode')}</b>
+                           <b className="align-middle">{t("Display mode")}</b>
                         </div>
                         <div className="col-4 border border-top-0 p-3">
                            <div class="form-check float-end form-switch">
-                              <input class="form-check-input" type="checkbox" checked={isDark} onChange={toggleModeDark} />
+                              <input
+                                 class="form-check-input"
+                                 type="checkbox"
+                                 checked={isDark}
+                                 onChange={toggleModeDark}
+                              />
                            </div>
                         </div>
                      </div>
-                  </div >
+                  </div>
                   <div className="Alerts-&-Popups">
                      <div className="d-flex pt-4 justify-content-between">
-                        <h5 className="pr-color">{t('Alerts & Popups :')}</h5>
-                        <button className="btn btn-sm fw-bold btn-outline-pr" onClick={handleReset}>
-                           <small>{t('Reset History')}</small>
+                        <h5 className="pr-color">{t("Alerts & Popups :")}</h5>
+                        <button className="btn btn-sm fw-bold btn-outline-pr"                            data-bs-toggle="modal"
+                           data-bs-target="#hist"
+                           onClick={handleReset}
+                        >
+                           <small>{t("Reset History")}</small>
                            <i class="bi bi-arrow-right-short"></i>
                         </button>
+                        <Hist></Hist>
                      </div>
                      <div className="row my-4">
                         <div className="col-8 border pr-color pt-3">
-                           <b className="align-middl">{t('Send alerts as emails')}</b>
+                           <b className="align-middl">
+                              {t("Send alerts as emails")}
+                           </b>
                         </div>
                         <div className="col-4 border pt-3">
                            <div class="form-check float-end form-switch">
-                              <input class="form-check-input" type="checkbox" checked={isAlertEmail} onChange={toggleModeAlertEmail} />
+                              <input
+                                 class="form-check-input"
+                                 type="checkbox"
+                                 checked={isAlertEmail}
+                                 onChange={toggleModeAlertEmail}
+                              />
                            </div>
                            <div class="form-check float-start form-switch">
-                              <p className="pr-color small">{!isAlertEmail ? t('Disabled') : t('Enabled')}</p>
+                              <p className="pr-color small">
+                                 {!isAlertEmail ? t("Disabled") : t("Enabled")}
+                              </p>
                            </div>
-                        </div >
+                        </div>
                         <div className="col-8 border pr-color pt-3">
-                           <b className="align-middl">{t('Send rapports daily')}</b>
+                           <b className="align-middl">
+                              {t("Send rapports daily")}
+                           </b>
                         </div>
                         <div className="col-4 border pt-3">
                            <div class="form-check float-end form-switch">
                               <input class="form-check-input" type="checkbox" />
                            </div>
                            <div class="form-check float-start form-switch">
-                              <p className="pr-color small">{t('Disabled')}</p>
+                              <p className="pr-color small">{t("Disabled")}</p>
                            </div>
                         </div>
                         <div className="col-8 border pr-color pt-3">
-                           <b className="align-middl">{t('Alerts sounds')}</b>
+                           <b className="align-middl">{t("Alerts sounds")}</b>
                         </div>
                         <div className="col-4 border pt-3">
                            <div class="form-check float-end form-switch">
-                              <input class="form-check-input" type="checkbox" checked={isVoiceOver}
-                                 onChange={toggleMode} />
+                              <input
+                                 class="form-check-input"
+                                 type="checkbox"
+                                 checked={isVoiceOver}
+                                 onChange={toggleMode}
+                              />
                            </div>
                            <div class="form-check float-start form-switch">
-                              <p className="pr-color small"> {!isVoiceOver ? t('Disabled') : t('Enabled')} </p>
-                           </div >
-                        </div >
+                              <p className="pr-color small">
+                                 {" "}
+                                 {!isVoiceOver
+                                    ? t("Disabled")
+                                    : t("Enabled")}{" "}
+                              </p>
+                           </div>
+                        </div>
                         <div className="col-8 border pr-color pt-3">
                            <b className="align-middl">
-                              {t('Display alerts as popups')}
+                              {t("Display alerts as popups")}
                            </b>
                         </div>
                         <div className="col-4 border pt-3">
                            <div class="form-check float-end form-switch">
-                              <input class="form-check-input" type="checkbox" checked={isPoped}
-                                 onChange={toggleModePop} />
+                              <input
+                                 class="form-check-input"
+                                 type="checkbox"
+                                 checked={isPoped}
+                                 onChange={toggleModePop}
+                              />
                            </div>
                            <div class="form-check float-start form-switch">
                               {/* <p className="pr-color small">{t('Disabled')}</p> */}
-                              <p className="pr-color small">{!isPoped ? t('Disabled') : t('Enabled')}</p>
-                           </div >
-                        </div >
-                     </div >
-                  </div >
+                              <p className="pr-color small">
+                                 {!isPoped ? t("Disabled") : t("Enabled")}
+                              </p>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
                   <div className="reports">
                      <div className="d-flex justify-content-between">
-                        <h5 className="pr-color">{t('Reports :')}</h5>
-                        <button className="btn btn-sm fw-bold btn-outline-pr">
-                           <small>{t('Export As')}</small>
+                        <h5 className="pr-color">{t("Reports :")}</h5>
+                        <button className="btn btn-sm fw-bold btn-outline-pr" data-bs-toggle="modal" data-bs-target="#exprt"
+                        >
+                           <small>{t("Export As")}</small>
                            <i class="bi bi-arrow-right-short"></i>
                         </button>
+                        <Exprt></Exprt>
                      </div>
                      <div className="row my-4">
                         <div className="col-6 border pr-color p-3">
-                           <b className="align-middle">{t('Auto-save reports')}</b>
+                           <b className="align-middle">
+                              {t("Auto-save reports")}
+                           </b>
                         </div>
                         <div className="col-6 border p-3">
                            <select class="form-select form-select-sm">
-                              <option selected>{t('Enabled (Weekly)')}</option>
-                              <option value="FR">{t('Enabled (monthly)')}</option>
+                              <option selected>{t("Enabled (Weekly)")}</option>
+                              <option value="FR">
+                                 {t("Enabled (monthly)")}
+                              </option>
                            </select>
                         </div>
                         <div className="col-6 border border-top-0 pr-color p-3">
-                           <b className="align-middle">{t('Display path')}</b>
+                           <b className="align-middle">{t("Display path")}</b>
                         </div>
                         <div className="col-6 border border-top-0 p-3">
                            <div
@@ -293,21 +331,26 @@ export default function Config() {
                         </div>
                      </div>
                   </div>
-               </div >
-            </div >
+               </div>
+            </div>
             <div>
                <div className="bg-white p-4 rounded-3">
                   <div className="Cam-Recording">
                      <div className="d-flex justify-content-between">
-                        <h5 className="pr-color">{t('Camera Recording :')}</h5>
-                        <button className="btn btn-sm fw-bold btn-outline-pr">
-                           <small>{t('Reset Cache')}</small>
+                        <h5 className="pr-color">{t("Camera Recording :")}</h5>
+                        <button className="btn btn-sm fw-bold btn-outline-pr"                            data-bs-toggle="modal"
+                           data-bs-target="#cache"
+                        >
+                           <small>{t("Reset Cache")}</small>
                            <i class="bi bi-arrow-right-short"></i>
                         </button>
+                        <Cache></Cache>
                      </div>
                      <div className="row my-4">
                         <div className="col-6 border pr-color p-3">
-                           <b className="align-middle">{t('Cache duration (sec)')}</b>
+                           <b className="align-middle">
+                              {t("Cache duration (sec)")}
+                           </b>
                         </div>
                         <div className="col-6 border p-3">
                            <span className="btn-outline-pr rounded-1 small px-2 py-1">
@@ -315,7 +358,8 @@ export default function Config() {
                            </span>
                            <input
                               type="range"
-                              onChange={(e) => changeRangeValue(e, 1)} className="float-end mt-1 pr-bg w-75"
+                              onChange={(e) => changeRangeValue(e, 1)}
+                              className="float-end mt-1 pr-bg w-75"
                               name="vol"
                               value={rangDurationValue}
                               min="0"
@@ -323,7 +367,7 @@ export default function Config() {
                            />
                         </div>
                         <div className="col-6 border border-top-0 pr-color p-3">
-                           <b className="align-middle">{t('Display mode')}</b>
+                           <b className="align-middle">{t("Display mode")}</b>
                         </div>
                         <div className="col-6 border border-top-0 p-3">
                            <div
@@ -337,15 +381,20 @@ export default function Config() {
                   </div>
                   <div className="Cam-Set">
                      <div className="d-flex justify-content-between">
-                        <h5 className="pr-color">{t('Camera setup :')}</h5>
-                        <button className="btn btn-sm fw-bold btn-outline-pr">
-                           <small>{t('Add zone name')}</small>
+                        <h5 className="pr-color">{t("Camera setup :")}</h5>
+                        <button className="btn btn-sm fw-bold btn-outline-pr"                            data-bs-toggle="modal"
+                           data-bs-target="#zoneadd"
+                        >
+                           <small>{t("Add zone name")}</small>
                            <i class="bi bi-arrow-right-short"></i>
                         </button>
+                        <ZoneAdd></ZoneAdd>
                      </div>
                      <div className="row my-4">
                         <div className="col-6 border pr-color p-3">
-                           <b className="align-middle">{t('Cache duration (sec)')}</b>
+                           <b className="align-middle">
+                              {t("Cache duration (sec)")}
+                           </b>
                         </div>
                         <div className="col-6 border p-3">
                            <span className="btn-outline-pr rounded-1 small px-2 py-1">
@@ -367,23 +416,25 @@ export default function Config() {
                         </div>
                         <div className="col-4 border p-3">
                            <select class="form-select form-select-sm">
-                              <option selected>{t('Enabled (Weekly)')}</option>
-                              <option value="FR">{t('Enabled (monthly)')}</option>
+                              <option selected>{t("Enabled (Weekly)")}</option>
+                              <option value="FR">
+                                 {t("Enabled (monthly)")}
+                              </option>
                            </select>
                         </div>
-                        <div className="col-4 border p-3">
-                           <select class="form-select form-select-sm">
-                              <option selected>{t('Enabled (Weekly)')}</option>
-                              <option value="FR">{t('Enabled (monthly)')}</option>
-                           </select>
+                        <div className="col-4 border p-3 ">
+                           <input
+                              type="text"
+                              placeholder="Set IP address"
+                              className="m-0 border-0 bg-white pr-color h-100 w-auto"
+                           />
+                           <i class="bi bi-pencil-square pr-color"></i>
                         </div>
-
-
                      </div>
                   </div>
                </div>
             </div>
-         </div >
-      </div >
+         </div>
+      </div>
    );
 }

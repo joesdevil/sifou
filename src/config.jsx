@@ -5,6 +5,7 @@ import Hist from "./components/pop-up/hist";
 import Exprt from "./components/pop-up/exprt";
 import Cache from "./components/pop-up/cache";
 import ZoneAdd from "./components/pop-up/add-zone";
+import AddCam from "./components/pop-up/addCam";
 
 export default function Config() {
 
@@ -350,7 +351,7 @@ export default function Config() {
                            <input 
                               type="text"
                                  onChange={savepath}
-                                 value={displaypathsave}
+                                 value={displaypathsave!=null?displaypathsave:''}
                               placeholder=" C:\Users\username\AppData\Roamin..."
                               className="m-0 border-0 bg-white pr-color h-100  "
                               style={myStyle}
@@ -412,7 +413,7 @@ export default function Config() {
                   </div>
                   <div className="Cam-Set">
                      <div className="d-flex justify-content-between">
-                        <h5 className="pr-color">{t("Camera setup :")}</h5>
+                        <h5 className="pr-color">{t("Zones & Camera setup :")}</h5>
                         <button className="btn btn-sm fw-bold btn-outline-pr"                            data-bs-toggle="modal"
                            data-bs-target="#zoneadd"
                         >
@@ -421,41 +422,102 @@ export default function Config() {
                         </button>
                         <ZoneAdd></ZoneAdd>
                      </div>
+
+
+                     {/* zone row */}
                      <div className="row my-4">
-                        <div className="col-6 border pr-color p-3">
+                        <div className="col-6 border pr-color p-3" style={{width:'33.3%'}}>
                            <b className="align-middle">
-                              {t("Cache duration (sec)")}
+                              {/* {t("Cache duration (sec)")} */}
+                              Boumerdes Zone
                            </b>
                         </div>
-                        <div className="col-6 border p-3">
-                           <span className="btn-outline-pr rounded-1 small px-2 py-1">
-                              {rangCamValue}
-                           </span>
+                        <div className="col-6 border p-3 col-6 border pr-color p-3" style={{textAlign: 'center',width:'66.7%'}}>
+                        
+                           <b data-bs-toggle="modal"
+                           data-bs-target="#exampleModalcam" style={{cursor:'pointer'}}>Add Zone Camera <i class="bi bi-plus-circle"></i></b>
+                           
+                          
+                        <AddCam></AddCam>
+                           
+                        </div>
+
+                        {/* camera row  */}
+
+                        <div className="col-4 border pr-color p-3">
+                           <b className="align-middle">Camera #01</b>
+                        </div>
+                        <div className="col-4 border pt-3">
+                           <div class="form-check float-end form-switch">
+                              <input class="form-check-input" type="checkbox" />
+                           </div>
+                           <div class="form-check float-start form-switch">
+                              <p className="pr-color small">{t("Disabled")}</p>
+                           </div>
+                        </div>
+                        <div className="col-4 border p-3 ">
                            <input
-                              type="range"
-                              onChange={(e) => changeRangeValue(e, 2)}
-                              className="float-end mt-1 pr-bg w-75"
-                              name="vol"
-                              value={rangCamValue}
-                              min="0"
-                              max="100"
+                              type="text"
+                              placeholder="Set IP address"
+                              className="m-0 border-0 bg-white pr-color h-100 w-auto"
                            />
+                           <i class="bi bi-pencil-square pr-color"></i>
+                        </div>
+
+                        {/* end camera row */}
+
+                        <div className="col-4 border pr-color p-3">
+                           <b className="align-middle">Camera #01</b>
+                        </div>
+                        <div className="col-4 border pt-3">
+                           <div class="form-check float-end form-switch">
+                              <input class="form-check-input" type="checkbox" />
+                           </div>
+                           <div class="form-check float-start form-switch">
+                              <p className="pr-color small">{t("Disabled")}</p>
+                           </div>
+                        </div>
+                        <div className="col-4 border p-3 ">
+                           <input
+                              type="text"
+                              placeholder="Set IP address"
+                              className="m-0 border-0 bg-white pr-color h-100 w-auto"
+                           />
+                           <i class="bi bi-pencil-square pr-color"></i>
+                        </div>
+
+                        {/* end cam row */}
+                     </div>
+                     
+                        {/* end zone row */}
+
+                        <div className="row my-4">
+                        <div className="col-6 border pr-color p-3" style={{width:'33.3%'}}>
+                           <b className="align-middle">
+                              {/* {t("Cache duration (sec)")} */}
+                              Boumerdes Zone
+                           </b>
+                        </div>
+                        <div className="col-6 border p-3 col-6 border pr-color p-3" style={{textAlign: 'center',width:'66.7%'}}>
+                        
+                           <b data-bs-toggle="modal"
+                           data-bs-target="#exampleModalcam" style={{cursor:'pointer'}}>Add Zone Camera <i class="bi bi-plus-circle"></i></b>
+                           
+                          
+                        <AddCam></AddCam>
+                           
                         </div>
 
                         <div className="col-4 border pr-color p-3">
                            <b className="align-middle">Camera #01</b>
                         </div>
-                        <div className="col-4 border p-3">
-                           <select class="form-select form-select-sm">
-                              <option selected>
-                                 {/* {t("Enabled (Weekly)")} */}
-                                 zone 2
-                                 </option>
-                              <option value="FR">
-                                 {/* {t("Enabled (monthly)")} */}
-                                 zone 1
-                              </option>
-                           </select>
+                        <div className="col-4 border pt-3">
+                           <div class="form-check float-end form-switch">
+                              <input class="form-check-input" type="checkbox" />
+                           </div>
+                           <div class="form-check float-start form-switch">
+                              <p className="pr-color small">{t("Disabled")}</p>
+                           </div>
                         </div>
                         <div className="col-4 border p-3 ">
                            <input
@@ -466,6 +528,7 @@ export default function Config() {
                            <i class="bi bi-pencil-square pr-color"></i>
                         </div>
                      </div>
+                     {/* end zone row 2 */}
                   </div>
                </div>
             </div>

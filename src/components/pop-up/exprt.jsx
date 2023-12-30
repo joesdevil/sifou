@@ -27,10 +27,10 @@ export default function Exprt() {
                        <div class="modal-body modal-dialog-centered p-4">
                              <div className="w-100">
                         <div className="pr-colo fw-bold">File format :</div>
-                             <select class="form-select py-2 form-select-sm">
-                              <option selected>Enabled (Weekly)"</option>
+                             <select class="form-select py-2 form-select-sm" style={{width:'30%'}}>
+                              <option selected>Pdf</option>
                               <option value="FR">
-                                 Enabled (monthly)
+                                 Excel
                               </option>
                            </select>
                            <div class="mt-3 w-100">
@@ -38,10 +38,10 @@ export default function Exprt() {
                            for="exampleFormControlInput1"
                            class="form-label pr-colo fw-bold"
                         >
-                           New Password :
+                          Filename :
                         </label>
                         <input
-                           type="email"
+                           type="text"
                            class="form-control py-2 w-100"
                            id="exampleFormControlInput1"
                            placeholder="xxxxxxxxx"

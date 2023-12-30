@@ -47,7 +47,7 @@ i18n
                     'Camera Recording :': 'Enregistrement visuel :',
                     'Cache duration (sec)': 'Durée du cache (en secondes)',
                     'Reset Cache': 'Effacer le cache',
-                    'Camera setup :': 'Réglages de la caméra :',
+                    'Zones & Camera setup :': 'Réglages de la caméra :',
                     'Add zone name': 'Ajouter le nom de la zone',
                     'Enabled (Weekly)': 'Activé (hebdomadaire)',
                     'Enabled (monthly)': 'Activé (mensuel)',

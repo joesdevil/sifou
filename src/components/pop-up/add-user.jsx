@@ -1,4 +1,30 @@
+import { useEffect,useState } from "react";
+import axios from "axios";
+
 export default function AddUser() {
+
+
+
+   const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+   
+
+  const handleAddUser = async () => {
+    try {
+      // Make a POST request to your FastAPI endpoint
+      const response = await axios.post('http://localhost:8000/add_user', {
+        username: username,
+        password: password,
+      });
+
+      // Handle the response as needed
+      console.log('User added successfully:', response.data.message);
+    } catch (error) {
+      // Handle errors, e.g., display an error message
+      console.error('Error adding user:', error.message);
+    }
+  };
     return (
        <>
           <div
@@ -52,6 +78,8 @@ export default function AddUser() {
                             class="form-control py-2 w-100"
                             id="exampleFormControlInput1"
                             placeholder="xxxxxxxxxx"
+                            value={username}
+          onChange={(e) => setUsername(e.target.value)}
                          />
                       </div>
                       <div class="mb-3 w-100">
@@ -80,6 +108,8 @@ export default function AddUser() {
                             class="form-control py-2 w-100"
                             id="exampleFormControlInput1"
                             placeholder="xxxxxxxxx"
+                            value={password}
+                           onChange={(e) => setPassword(e.target.value)}
                          />
                       </div>
                       <div class="mb-3 w-100">
@@ -107,7 +137,7 @@ export default function AddUser() {
                       >
                          Close
                       </button>
-                      <button style={{width: '130px'}} type="button" class="btn btn-primary">
+                      <button style={{width: '130px'}} type="button" class="btn btn-primary" onClick={handleAddUser}>
                          Add User
                       </button>
                    </div>

@@ -6,8 +6,62 @@ import Exprt from "./components/pop-up/exprt";
 import Cache from "./components/pop-up/cache";
 import ZoneAdd from "./components/pop-up/add-zone";
 import AddCam from "./components/pop-up/addCam";
+import axios from "axios";
+import { useNavigate } from "react-router";
 
 export default function Config() {
+
+
+
+   // 
+
+
+
+
+   const [zones, setZones] = useState([]);
+   const [cameras, setCameras] = useState([]);
+   const fetchCams = async () => {
+      try {
+        const responsecam = await axios.get('http://localhost:8000/cameras/');
+        setCameras(responsecam.data);
+        console.log(responsecam.data)
+      } catch (error) {
+        console.error('Error fetching cameras:', error);
+      }
+    };
+
+   // Function to fetch zones from the server
+   const fetchZones = async () => {
+     try {
+       const responsezone = await axios.get('http://localhost:8000/zones/');
+       setZones(responsezone.data);
+       fetchCams()
+       console.log(responsezone.data)
+     } catch (error) {
+       console.error('Error fetching zones:', error);
+     }
+   };
+
+   
+ 
+   useEffect(() => {
+     // Fetch zones when the component mounts
+     fetchZones();
+     
+   }, []);
+
+
+
+
+
+
+
+
+
+
+
+   // 
+   
 
 
    const myStyle = {
@@ -34,6 +88,9 @@ export default function Config() {
    // Utilisez la fonction useTranslation pour obtenir les fonctions de traduction
    const { t, i18n } = useTranslation();
 
+   const [timeexportdelay, settimeexportdelay] = useState(
+      localStorage.getItem("timeexportdelay")
+   );
    const [nouvelleLangue, setnouvelleLangue] = useState(
       localStorage.getItem("nouvelleLangue")
    );
@@ -160,6 +217,12 @@ export default function Config() {
       body: "hi",
    });
 
+   const raportDelay=(e)=>{
+      console.log(e.target.value)
+      localStorage.setItem('timeexportdelay',e.target.value)
+      setRageCamValue(timeexportdelay)
+   }
+
    const HandlealertsAsEmail = async () => {
       try {
          const response = await fetch("http://127.0.0.1:8000/send-email/", {
@@ -177,8 +240,15 @@ export default function Config() {
       }
    };
 
+   const history = useNavigate();
+   const signOut = () => {
+      localStorage.removeItem("temitope");
+      history('/login');
+    };
+
    return (
       <div className="p-4">
+         <button onClick={signOut}>sign out</button>
          <h4 className="pr-color">{t("All Settings")}</h4>
          <div className="row row-cols-lg-2">
             <div>
@@ -332,9 +402,10 @@ export default function Config() {
                            </b>
                         </div>
                         <div className="col-6 border p-3">
-                           <select class="form-select form-select-sm">
-                              <option selected>{t("Enabled (Weekly)")}</option>
-                              <option value="FR">
+                           <select class="form-select form-select-sm" onChange={raportDelay} >
+                              <option value='daily' selected>{t("Enabled (Daily)")}</option>
+                              <option value='weekly'>{t("Enabled (Weekly)")}</option>
+                              <option value="monthly">
                                  {t("Enabled (monthly)")}
                               </option>
                            </select>
@@ -351,7 +422,7 @@ export default function Config() {
                            <input 
                               type="text"
                                  onChange={savepath}
-                                 value={displaypathsave!=null?displaypathsave:''}
+                                 value={displaypathsave!='null'?displaypathsave:''}
                               placeholder=" C:\Users\username\AppData\Roamin..."
                               className="m-0 border-0 bg-white pr-color h-100  "
                               style={myStyle}
@@ -424,110 +495,62 @@ export default function Config() {
                      </div>
 
 
-                     {/* zone row */}
-                     <div className="row my-4">
-                        <div className="col-6 border pr-color p-3" style={{width:'33.3%'}}>
-                           <b className="align-middle">
-                              {/* {t("Cache duration (sec)")} */}
-                              Boumerdes Zone
-                           </b>
-                        </div>
-                        <div className="col-6 border p-3 col-6 border pr-color p-3" style={{textAlign: 'center',width:'66.7%'}}>
-                        
-                           <b data-bs-toggle="modal"
-                           data-bs-target="#exampleModalcam" style={{cursor:'pointer'}}>Add Zone Camera <i class="bi bi-plus-circle"></i></b>
-                           
-                          
-                        <AddCam></AddCam>
-                           
-                        </div>
-
-                        {/* camera row  */}
-
-                        <div className="col-4 border pr-color p-3">
-                           <b className="align-middle">Camera #01</b>
-                        </div>
-                        <div className="col-4 border pt-3">
-                           <div class="form-check float-end form-switch">
-                              <input class="form-check-input" type="checkbox" />
-                           </div>
-                           <div class="form-check float-start form-switch">
-                              <p className="pr-color small">{t("Disabled")}</p>
-                           </div>
-                        </div>
-                        <div className="col-4 border p-3 ">
-                           <input
-                              type="text"
-                              placeholder="Set IP address"
-                              className="m-0 border-0 bg-white pr-color h-100 w-auto"
-                           />
-                           <i class="bi bi-pencil-square pr-color"></i>
-                        </div>
-
-                        {/* end camera row */}
-
-                        <div className="col-4 border pr-color p-3">
-                           <b className="align-middle">Camera #01</b>
-                        </div>
-                        <div className="col-4 border pt-3">
-                           <div class="form-check float-end form-switch">
-                              <input class="form-check-input" type="checkbox" />
-                           </div>
-                           <div class="form-check float-start form-switch">
-                              <p className="pr-color small">{t("Disabled")}</p>
-                           </div>
-                        </div>
-                        <div className="col-4 border p-3 ">
-                           <input
-                              type="text"
-                              placeholder="Set IP address"
-                              className="m-0 border-0 bg-white pr-color h-100 w-auto"
-                           />
-                           <i class="bi bi-pencil-square pr-color"></i>
-                        </div>
-
-                        {/* end cam row */}
-                     </div>
                      
-                        {/* end zone row */}
 
-                        <div className="row my-4">
-                        <div className="col-6 border pr-color p-3" style={{width:'33.3%'}}>
-                           <b className="align-middle">
-                              {/* {t("Cache duration (sec)")} */}
-                              Boumerdes Zone
-                           </b>
-                        </div>
-                        <div className="col-6 border p-3 col-6 border pr-color p-3" style={{textAlign: 'center',width:'66.7%'}}>
+                        {zones.map((zone)=>(
+                           <div className="row my-4">
+                           <div className="col-6 border pr-color p-3" style={{width:'33.3%'}}>
+                              <b className="align-middle">
+                                 {/* {t("Cache duration (sec)")} */}
+                                 {zone.zoneName} Zone #{zone.id}
+                              </b>
+                           </div>
+                           <div className="col-6 border p-3 col-6 border pr-color p-3" style={{textAlign: 'center',width:'66.7%'}}>
+                           
+                              <b data-bs-toggle="modal"
+                              data-bs-target="#exampleModalcam" style={{cursor:'pointer'}}>Add Zone Camera <i class="bi bi-plus-circle"></i></b>
+                              
+                             
+                           <AddCam></AddCam>
+                              
+                           </div>
+   
+                          {/* cam row */}
+
+                          {cameras.map((camera)=>(
+                                
+                                 camera.zone_id==zone.id?( <>
+                                 <div className="col-4 border pr-color p-3">
+                                 <b className="align-middle">Camera #01</b>
+                                 </div>
+                                 <div className="col-4 border pt-3">
+                                 <div class="form-check float-end form-switch">
+                                    <input class="form-check-input" type="checkbox" checked={camera.is_active} />
+                                 </div>
+                                 <div class="form-check float-start form-switch">
+                                    <p className="pr-color small">{t("Disabled")}</p>
+                                 </div>
+                                 </div>
+                                 <div className="col-4 border p-3 ">
+                                 <input
+                                    type="text"
+                                    placeholder="Set IP address"
+                                    className="m-0 border-0 bg-white pr-color h-100 w-auto"
+                                    value={camera.ip_address}
+                                    disabled={true}
+                                 />
+                                 <i class="bi bi-pencil-square pr-color"></i>
+                                 </div>
+                                 </>):'' 
+                              
+                                 
+                          ))}
                         
-                           <b data-bs-toggle="modal"
-                           data-bs-target="#exampleModalcam" style={{cursor:'pointer'}}>Add Zone Camera <i class="bi bi-plus-circle"></i></b>
-                           
-                          
-                        <AddCam></AddCam>
-                           
-                        </div>
 
-                        <div className="col-4 border pr-color p-3">
-                           <b className="align-middle">Camera #01</b>
+
+                          {/* end cam row */}
                         </div>
-                        <div className="col-4 border pt-3">
-                           <div class="form-check float-end form-switch">
-                              <input class="form-check-input" type="checkbox" />
-                           </div>
-                           <div class="form-check float-start form-switch">
-                              <p className="pr-color small">{t("Disabled")}</p>
-                           </div>
-                        </div>
-                        <div className="col-4 border p-3 ">
-                           <input
-                              type="text"
-                              placeholder="Set IP address"
-                              className="m-0 border-0 bg-white pr-color h-100 w-auto"
-                           />
-                           <i class="bi bi-pencil-square pr-color"></i>
-                        </div>
-                     </div>
+                        ))}
                      {/* end zone row 2 */}
                   </div>
                </div>

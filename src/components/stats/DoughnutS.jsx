@@ -1,7 +1,7 @@
 import { Doughnut } from "react-chartjs-2";
 import { useTranslation } from "react-i18next";
 
-export default function DoughnutS() {
+export default function DoughnutS(props) {
    // Doughnut chart data
    const isDark = localStorage.getItem("isDark");
    function dark() {
@@ -55,8 +55,11 @@ export default function DoughnutS() {
          },
       },
    };
+
+
+ 
    return (
-      <div style={{ height: "35vh" }} className="bg-white rounded-4 shadow p-3">
+      <div style={{ height: "35vh" }} className={props.shadow?  'bg-white rounded-4 p-3 shadow':'bg-white rounded-4 p-3 '}>
          <Doughnut
             style={{ width: "100%" }}
             data={doughnutData}

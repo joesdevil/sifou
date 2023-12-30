@@ -1,11 +1,48 @@
-import { useState } from "react";
-
+import { useState,useEffect } from "react";
+import axios from 'axios';
 export default function ZoneAdd() {
-        const [rangValue, setCamValue] = useState(0);
+
+
+
+
+// send  to back
+const [zoneName, setZoneName] = useState('');
+const [rangValue, setRangValue] = useState(0);
+
+const handleCreateZone = async () => {
+   
+    try {
+      console.log(zoneName,rangValue)
+        const response = await axios.post('http://localhost:8000/zones/', {
+             zoneName,
+             rangValue  // Convert to integer if needed
+        });
+        console.log('Zone created:', response.data);
+    } catch (error) {
+        console.error('Error creating zone:', error);
+    }
+};
+
+
+// end
+
+
+
+
+
+
+
+
+
+
+
+
+
+         
         const changeRangeValue = (e, num) => {
                 switch (num) {
                    case 2:
-                      setCamValue(e.target.value);
+                     setRangValue(e.target.value);
                       break;
                    default:
                       break;
@@ -49,13 +86,14 @@ export default function ZoneAdd() {
                               for="exampleFormControlInput1"
                               class="form-label pr-colo fw-bold"
                            >
-                              Previous Password :
+                              Zone name :
                            </label>
                            <input
-                              type="email"
+                              type="text"
                               class="form-control py-2 w-100"
                               id="exampleFormControlInput1"
                               placeholder="xxxxxxxxxx"
+                              value={zoneName} onChange={(e) => setZoneName(e.target.value)}
                            />
                         </div>
                         <div className="w-100 p-3">
@@ -84,7 +122,7 @@ export default function ZoneAdd() {
                      >
                         Close
                      </button>
-                     <button type="button" class="btn btn-primary">
+                     <button onClick={handleCreateZone} type="button" class="btn btn-primary">
                         Save changes
                      </button>
                   </div>

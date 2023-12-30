@@ -4,6 +4,9 @@ from fastapi.middleware.cors import CORSMiddleware
 import logging
 import smtplib
 
+ 
+ 
+
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 # EMAIL_HOST = 'smtp.gmail.com'  # Correct SMTP server for Gmail
 # EMAIL_PORT = 587  # Correct port for Gmail
@@ -56,3 +59,38 @@ def main(email_data: EmailData):
     except Exception as e:
         
         raise HTTPException(status_code=500, detail=str(e))
+
+
+ 
+
+#  ss
+    
+    # main.py
+
+from fastapi import FastAPI, HTTPException
+from sqlalchemy.orm import Session
+from app import database, models
+
+app = FastAPI()
+
+# Dependency to get the database session
+def get_db():
+    db = database.SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
+
+@app.on_event("startup")
+async def startup_db_client():
+    # Create tables when the app starts
+    database.create_tables()
+
+@app.post("/items/")
+async def create_item(item: models.Item, db: Session = Depends(get_db)):
+    # Your database operations here
+    db_item = models.Item(**item.dict())
+    db.add(db_item)
+    db.commit()
+    db.refresh(db_item)
+    return {"msg": "Item created successfully"}

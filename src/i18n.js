@@ -49,6 +49,7 @@ i18n
                     'Reset Cache': 'Effacer le cache',
                     'Zones & Camera setup :': 'Réglages de la caméra :',
                     'Add zone name': 'Ajouter le nom de la zone',
+                    'Enabled (Daily)':'Activé (quotidiennement)',
                     'Enabled (Weekly)': 'Activé (hebdomadaire)',
                     'Enabled (monthly)': 'Activé (mensuel)',
                     'See details': 'Voir Détails',

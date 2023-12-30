@@ -64,7 +64,7 @@ asyncio.get_event_loop().run_forever()
 #             status = input("status: ")
 #             context["status"] = status
             
-#             print("context sent")
+#             print("context sent")s
 #             await websocket.send(json.dumps(context))
            
 

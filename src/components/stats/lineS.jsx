@@ -1,7 +1,7 @@
 import { Line } from "react-chartjs-2";
 import { useTranslation } from 'react-i18next';
 
-export default function LineS() {
+export default function LineS(props) {
    const isDark = localStorage.getItem("isDark");
    function dark() {
       if (isDark == "true") {
@@ -89,7 +89,7 @@ export default function LineS() {
    return (
       <div
          style={{ height: "41vh" }}
-         className="text-center mt-3 bg-white rounded-4 shadow p-3"
+         className={props.shadow?'text-center mt-3 bg-white rounded-4 shadow p-3':'text-center mt-3 bg-white rounded-4 p-3'}
       >
          <div style={{ height: "34vh" }}>
             <Line
@@ -98,7 +98,9 @@ export default function LineS() {
                options={lineOptions}
             />
          </div>
-         <small className="fw-bold text-secondary">{t('-alerts history-')}</small>
+
+          
+        
       </div>
 
    )

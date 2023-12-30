@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
 
 
-export default function Zone() {
+export default function Zone(props) {
    const { t } = useTranslation();
 
    const [isDisabled1, setIsDisabled1] = useState(false);
@@ -28,7 +28,7 @@ export default function Zone() {
    return (
       <>
          <tr className="">
-            <th scope="row">3</th>
+            <th scope="row">{props.stat?props.name:3}</th>
             <td>
                <h6 className="pr-color">Zone 01</h6>
                <div className="feats">
@@ -80,12 +80,15 @@ export default function Zone() {
             <td className="si fw-bold align-middle fs-5 text-success">
                6 <i class="bi ps-1 bi-check-circle-fill"></i>
             </td>
-            <td className="">
+
+            {!props.stat?( <td className="">
                <div class="form-check ms-sm-4 mt-4 form-switch">
                   <input class="form-check-input" type="checkbox" />
                </div>
-            </td>
-            <td className="">
+            </td>):''}
+           
+
+            {!props.stat?( <td className="">
                <Link className="link" to="/zones/edit">
                   <button className="btn fw-bold btn-outline-pr">
                      <i class="bi bi-pencil-square"></i>{" "}
@@ -97,7 +100,8 @@ export default function Zone() {
                   <i class="bi bi-x-circle-fill pe-sm-2"></i>{" "}
                   <span>{t('Delete')}</span>
                </button>
-            </td>
+            </td>):''}
+           
          </tr>
       </>
    )
